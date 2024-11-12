@@ -73,9 +73,9 @@ The third part of the engine relies on page metadata, both explicitly specified 
 
 As the usage of the meta tags over typical webpages seems widely inconsistent, and in general they seem underused, there's two proposed aspects to this component.
 
-Forstly, certain meta tags (such as keywords etc.) as well as the page title, are to be added to the processed text for the rest of the engine to use.
+Firstly, certain meta tags (such as keywords etc.) as well as the page title, are to be added to the processed text for the rest of the engine to use.
 
-Secondly, generated metadata is to be used to aid in lookups, especially a metric of word frequency (the current options include TF-IDF or simply a normalized term occurence frequency value, disregarding other documents).
+Secondly, generated metadata is to be used to aid in lookups, especially a metric of word frequency (the current options include TF-IDF or simply a normalized term occurrence frequency value, disregarding other documents).
 Using this metric, the search engine could do a very efficient preliminary score calculation, to see which articles even mention any words in the search query.
 Since the term frequency values would be generated during the preprocessing phase, this operation would be mainly accessing the values, which is fairly inexpensive.
 Then, any pages with a score below a certain threshold could be excluded altogether.
