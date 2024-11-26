@@ -1,4 +1,11 @@
 \subsubsection{REQ1.1: Preprocessor}
 
-\textbf{REQ1.1.1: }Preprocess all received text data (both from search queries and uploaded pages) by setting it to lower case, removing punctuation, removing stop words, and lemmatisation or stemming.\par
-\textbf{\\REQ1.1.2: }For data that will be inputted into REQ 1.3, process this data further to be in the format suitable for BERT to process it.\par
+\textbf{REQ1.1.1:} Preprocess received HTML data from a webpage by stripping the tags, gathering the text content, setting it to lower case, removing punctuation, removing stop words, and lemmatisation or stemming.\par
+
+\textbf{\\REQ1.1.2:} Preprocess received user query text by setting it to lower case, removing punctuation, removing stop words, and lemmatisation or stemming.\par
+
+\textbf{\\REQ1.1.3:} For data that will be inputted into \textbf{REQ1.3}, process this data further to be in the format suitable for BERT to process it.\par
+
+\textbf{\\REQ1.1.4:} For dara that will be inputted into \textbf{REQ1.4}, ensure any relevant metadata is also gathered and forwarded in \textbf{REQ1.1.1}\par
+
+\textbf{\\REQ1.1.5:} Send preprocessed data as input into \textbf{REQ1.2}, \textbf{REQ1.3}, \textbf{REQ1.4} for further processing.\par
