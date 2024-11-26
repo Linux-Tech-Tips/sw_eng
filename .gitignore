@@ -1,1 +1,4 @@
 # gitignore, add files to be ignored if at any point found
+
+# VIM swap files, can be ignored
+*.swp
