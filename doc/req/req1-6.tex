@@ -1,3 +1,18 @@
 \subsubsection{REQ1.6: Query Matching and Correlation}
 
-\textit{Detailed requirements about the query matching system}
+\textbf{REQ1.6.1:} Receive processed user query data from \textbf{REQ1.1}.\par
+
+\textbf{\\REQ1.6.2:} Obtain data from the database defined by \textbf{REQ1.5} about pages the engine will use to search.\par
+
+\textbf{\\REQ1.6.3:} Obtain correlation score between processed query data from \textbf{REQ1.6.1} and page data gathered from \textbf{REQ1.6.2} -- 
+for now, the proposal is to use dot product similarity, however, specific implementation details are left open, as a more efficient method may be figured out further in the implementation process.\par
+
+\textbf{\\REQ1.6.4:} Obtain a total correlation score, using a formula akin to the following: 
+\[ SCORE = (R_c * M) + (1 - R_c) * ((C_f * W_m) + (1 - C_f) * (W_s)) \]
+where \(R_c\) is an arbitrary Metadata Relevance Constant, \(M\) is the Metadata Correlation Score, \(C_f\) is a Confidence Value, describing how confident we are in knowing the meanings of words in the query, 
+\(W_m\) is the Word Meaning Correlation Score, and \(W_s\) is the Word Spelling/Content Correlation Score -- 
+for now, the proposal is to use this formula, however, it is left open, as modifications to increase effectivity can be made later during development.\par
+
+\textbf{\\REQ1.6.5:} Return the gathered page correlation info to \textbf{REQ3.3}.\par
+
+
