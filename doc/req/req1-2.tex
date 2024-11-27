@@ -1,3 +1,10 @@
 \subsubsection{REQ1.2: Word Content Processor}
 
-\textit{Detailed requirements about the word content processor}
+
+\textbf{\\REQ1.2.1:} The pre-processed data from \textit{REQ1.1} are converted into a vector and a matrix. The vector conversion is based on how the word is spelt so that when the distance between the two vectors are compared, it will represent how similar the spellings of the words are. The vector represents the query and the matrix represents the text data. \par
+
+\textbf{\\REQ1.2.2:} The text matrix from \textit{REQ1.2.1} is sent to \textit{REQ1.5}. \par
+
+\textbf{\\REQ1.2.3:} The query vector and the text matrix (both from \textit{REQ1.2.1}) are compared for spelling similarity. \par
+
+\textbf{\\REQ1.2.4:} The results from \textit{REQ1.2.3} are sent to \textit{REQ1.6} for query matching. \par
