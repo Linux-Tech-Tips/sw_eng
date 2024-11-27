@@ -1,37 +1,73 @@
 \section{Introduction}
 
-\textit{The introduction to the Software Requirements Specification (SRS) document should provide an overview of the project.}
+This Software Requirements Specification (\textit{SRS}) Document describes the project requirements of the project \projectname, 
+developed by the Unix User Group for the University module CT216 Software Engineering. \\
+
+The project, currently under the working title \projectname, consists of a specialized search engine, meant mainly to make it easier to find relevant technical information online. \\
+
+The two factors differentiating this engine from currently available products are mainly the ability to search trusted pages rather the entire internet, 
+and a lookup strategy optimized specifically for both dense text and technical documentation.
+This approach benefits the user in the following ways:
+\begin{enumerate}
+    \item adding explicitly trusted pages excludes spam and advertising (present in abundance in current search engines) and introduces an unprecedented yet easily achievable level of moderation to the search results;
+    \item optimizing the search engine to search both through dense text and technical information will optimally make it so the user can find the relevant parts of a document much easier than in current search engines.
+\end{enumerate}
+
+As one of the main goals of the project is to serve as a learning experience in the area of software engineering, and for the purposes of optimization, 
+the most important component of this project will be making the described search engine from scratch rather than relying on existing lookup libraries. \\
+
+The project is split into multiple distinct sections, with a conscious effort to keep everything modular, so that each team member can be responsible for only a section,
+rather than having to comprehend the internal details of the entire project.
+When all the sections are joined together, the final result of this project should be a website, with a frontend user interface through which users will be able to use the aforementioned search engine. \\
 
 \subsection{Purpose}
 
-\textit{What is the purpose of this SRS and the (intended) audience for which it is written.}
+The purpose of this SRS document is to provide a thorough overview of the project requirements for the project \projectname. \\
+
+The intended audience of this document is:
+\begin{itemize}
+    \item the product team, for reference and as a guideline for the implementation;
+    \item the people marking this project, meaning the lecturer Enda Barret and possibly Teaching Support Staff.
+\end{itemize}
 
 \subsection{Key Stakeholders}
 
-(1) \textbf{Product Owner:} \textit{Responsible for backlog prioritization and user stories} \\
+(1) \textbf{Product Owner:} The product ownership is shared equally within the team, meaning the product owners are: Martin Klacer, Lilian Kennedy, Ethan Aguocha-Njoroge, Elisabeth Pfeiffer \\
 (2) \textbf{Scrum Master:} Martin Klacer \\
 (3) \textbf{Development Team:} Martin Klacer, Lilian Kennedy, Ethan Aguocha-Njoroge, Elisabeth Pfeiffer \\
-(4) \textbf{Other Stakeholders:} \textit{Marketing, business analysts, customers, end users etc.} \\
+(4) \textbf{Other Stakeholders:} Enda Barrett (Software Engineering Module Lecturer) \\
 
 \subsection{Scope, Objectives and Goals}
 
-\textit{This subsection should:} \\
-\textit{(1) Identify the software system(s) to be produced by name; for example, Real time messaging application, Filesharing app, etc} \\
-\textit{(2) Explain what the software system(s) will, and, if necessary, will not do} \\
-\textit{(3) Describe the application of the software being specified. As a portion of this, it should:} \\
-\textit{  (a) Describe all relevant benefits, objectives, and goals.} \\
+The software in question is aimed to be a search engine optimized for technical documentation and general dense technical text. \\
+
+The objectives of the software, as outlined in the project description, are:
+\begin{itemize}
+    \item to allow the user to add websites explicitly stated as trusted,
+    \item to allow the user to look up information in the trusted websites using a text query.
+\end{itemize}
+
+To ensure the scope is clearly outlined, the software \textbf{will not}:
+\begin{itemize}
+    \item search through the entire internet or the large majority of it.
+\end{itemize}
+
+An overview of the expected functionality and benefits of the software can be found in the first section of the introduction chapter. \\
+
+An overview of how project requirements are structured and organized can be found in the first section of the requirements chapter. \\
+
+The objectives and goals of this program are explained thoroughly in detail within the actual project requirements, which can be found in the requirements chapter. \\
 
 \subsection{References}
 
-\textit{This subsection should:} \\
-\textit{(1) Provide a complete list of all documents referenced elsewhere in the SRS, or in a separate, specified document.} \\
-\textit{(2) Identify each document by title, report number - if applicable - date, and publishing organization.} \\
-\textit{(3) Specify the sources from which the references can be obtained.} \\
-\textit{This information may be provided by reference to an appendix or to another document.} \\
+There are no additional documents referenced.
 
 \subsection{Overview}
 
-\textit{This subsection should:} \\
-\textit{(1) Describe what the rest of the SRS contains} \\
-\textit{(2) Explain how the SRS is organized.} \\
+This introduction section of the SRS contains a brief introduction to the project \projectname and to the document itself. \\
+
+The remaining sections of this document contain an organized list of all project requirements, followed by a brief overview of expected timeline of the project. \\
+
+The requirements section itself contains information about how the project requirements are organized, as well as a series of diagrams highlighting how the requirement structure is interconnected.
+This is followed by the entire list of the project requirements, organized and sorted in the way outlined by the requirements section introduction. \\
 
