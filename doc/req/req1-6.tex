@@ -1,10 +1,10 @@
 \subsubsection{REQ1.6: Query Matching and Correlation}
 
-\textbf{REQ1.6.1:} Receive processed user query data from \textbf{REQ1.1}.\par
+\textbf{REQ1.6.1:} Receive processed user query data from \textit{REQ1.1}.\par
 
-\textbf{\\REQ1.6.2:} Obtain data from the database defined by \textbf{REQ1.5} about pages the engine will use to search.\par
+\textbf{\\REQ1.6.2:} Obtain data from the database defined by \textit{REQ1.5} about pages the engine will use to search.\par
 
-\textbf{\\REQ1.6.3:} Obtain correlation score between processed query data from \textbf{REQ1.6.1} and page data gathered from \textbf{REQ1.6.2} -- 
+\textbf{\\REQ1.6.3:} Obtain correlation score between processed query data from \textit{REQ1.6.1} and page data gathered from \textit{REQ1.6.2} -- 
 for now, the proposal is to use dot product similarity, however, specific implementation details are left open, as a more efficient method may be figured out further in the implementation process.\par
 
 \textbf{\\REQ1.6.4:} Obtain a total correlation score, using a formula akin to the following: 
@@ -13,6 +13,6 @@ where \(R_c\) is an arbitrary Metadata Relevance Constant, \(M\) is the Metadata
 \(W_m\) is the Word Meaning Correlation Score, and \(W_s\) is the Word Spelling/Content Correlation Score -- 
 for now, the proposal is to use this formula, however, it is left open, as modifications to increase effectivity can be made later during development.\par
 
-\textbf{\\REQ1.6.5:} Return the gathered page correlation info to \textbf{REQ3.3}.\par
+\textbf{\\REQ1.6.5:} Return the gathered page correlation info to \textit{REQ3.3}.\par
 
 
