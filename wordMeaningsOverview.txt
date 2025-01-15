@@ -1,0 +1,26 @@
+Preface:
+My head is currently filled with question marks concerning how google cloud/firebase actually work so take everything with a grain of salt <333
+
+Option 1: Hugging Face ModernBERT
+- pre-trained model from hugging face, open-source and we know what it's trained on
+- train it for text classification (i.e. it judges how much a text suits each entry in a list of labels)
+- upload it onto the hugging face website (would allow everyone on the web to access it)
+- deploy it in our google cloud project
+- maybe not allowed????????? idk man
+
+Option 2: Google cloud text classification models
+- fine-tune a generative model available on google cloud (e.g. gemini) similarly as described above
+- definitely allowed
+- not open source afaik, idk what it's been trained on
+
+Option 3: Google cloud embedding model
+- e.g. E5 (open-source)
+- afaik (?????? so much salt) takes in text and spits out vectors
+- can be fine-tuned in google cloud to work better with the linux manual
+
+Links:
+Hugging Face ModernBERT: https://huggingface.co/answerdotai/ModernBERT-base
+Google cloud AI pricing: https://cloud.google.com/vertex-ai/pricing?authuser=4&_gl=1*16n80u0*_ga*MTA2NTAyNjU5NC4xNzI4NTYyMDQw*_ga_WH2QY8WWF5*MTczNjk1OTU3Ny40LjEuMTczNjk2MDUyMy42MC4wLjA.#vertex-ai-pricing
+E5 paper: https://arxiv.org/abs/2212.03533
+Google cloud Model Garden (all their available models): https://console.cloud.google.com/vertex-ai/model-garden?authuser=4&inv=1&invt=Abm7Vg&pageState=(%22galleryStateKey%22:(%22f%22:(%22g%22:%5B%5D,%22o%22:%5B%5D),%22s%22:%22%22))
+
