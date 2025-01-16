@@ -18,9 +18,14 @@ Option 3: Google cloud embedding model
 - afaik (?????? so much salt) takes in text and spits out vectors
 - can be fine-tuned in google cloud to work better with the linux manual
 
+Option 4: Firebase upload custom tensorflow model
+- uhhh I barely understand this actually
+- I think that firebase lets you upload a tensorflow model?
+- Would probably function similarly to option 1
+
 Links:
 Hugging Face ModernBERT: https://huggingface.co/answerdotai/ModernBERT-base
 Google cloud AI pricing: https://cloud.google.com/vertex-ai/pricing?authuser=4&_gl=1*16n80u0*_ga*MTA2NTAyNjU5NC4xNzI4NTYyMDQw*_ga_WH2QY8WWF5*MTczNjk1OTU3Ny40LjEuMTczNjk2MDUyMy42MC4wLjA.#vertex-ai-pricing
 E5 paper: https://arxiv.org/abs/2212.03533
 Google cloud Model Garden (all their available models): https://console.cloud.google.com/vertex-ai/model-garden?authuser=4&inv=1&invt=Abm7Vg&pageState=(%22galleryStateKey%22:(%22f%22:(%22g%22:%5B%5D,%22o%22:%5B%5D),%22s%22:%22%22))
-
+Firebase tensorflow thing: https://firebase.google.com/docs/ml/use-custom-models?hl=en&authuser=4&_gl=1*1wcs1i4*_ga*OTg5MDk5NDk0LjE3MzY4Njk4NTM.*_ga_CW55HF8NVT*MTczNzAyMjY0OC40LjEuMTczNzAyMjgyNi40Ni4wLjA.
