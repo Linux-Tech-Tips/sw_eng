@@ -1,21 +1,8 @@
-#check for correct number of arguments
-#create text file with correct title
-#open html file
-#read it in line by line
-#use regex to find <script --> delete each character until we hit </script>
-#use regex to find <
-#delete each next character until we hit >
-#if we don't hit a >, delete each character in the next line until we hit >
-#convert all html entities to the proper characters
-
 import sys
 import re
 import html
 
-print(re.search("c", "abcdef"))
-print(re.search("food", "I like foods"))
 
-"""
 if(len(sys.argv)!=2):
   print("incorrect number of arguments")
   quit()
@@ -25,9 +12,19 @@ title = inFile #copy the name of the file and edit it to be .txt instead of .htm
 title = title.split(".")
 title[-1]="txt"
 outFile=".".join(title)
-outFile = "./"+outFile
+
 
 with open(inFile, 'r') as f: #opens the original file for reading
-  for line in f:
-    line = f.readline()#read in each line
-   """ 
+  with open(outFile, 'w') as w: #opens the new file for writing
+    for line in f:
+      line = f.readline()#read in each line
+      if(re.search("<script", line)!=None): #if there's script tag --> skip to next line until </script> is found
+        while(re.search("</script>", line)!=None):
+          line = f.readline()
+        line = f.readline() #remove the line with the </script>
+      line = re.sub("<.*?>","", line) #removes all text inside <>
+      line = html.unescape(line) #process all html entities
+      w.write(line)
+    w.close()
+  f.close()
+
