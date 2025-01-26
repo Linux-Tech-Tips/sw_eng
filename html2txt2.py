@@ -20,13 +20,18 @@ with open(inFile, 'r') as f: #opens the original file for reading
       line = f.readline()#read in each line
       if not line:
         break
-      if(re.search("<script", line)!=None): #if there's script tag --> skip to next line until </script> is found
-        while(re.search("</script>", line)==None):
+      if(re.search("<script", line)!=None): #if there's script tag --> skip to next line until </script> is found ONLY WORKS FOR ONE SCRIPT TAG T^T
+        while(not re.search("</script>", line)):
+          print(line) #test to check what it's actually detecting
           line = f.readline() 
         line = f.readline() #remove the line with the </script>
       line = re.sub("<.*?>","", line) #removes all text inside <>
       if(re.search("<", line)!=None): #if there's an open tag --> delete every line until it ends
-        while(re.search(">", line)==None and re.search("<", line)==None): #when the second half is there is properly processes all script tags but does a worse job at multi-line tags
+        while True: 
+          if(not line): #if we hit EOF --> end program
+             quit()
+          if(re.search(">", line)!=None and not (re.search("<", line))): #if there's a closing tag with no opening tag --> exit loop
+            break
           line = f.readline()
         line = f.readline() #remove the last line of the tag
       line = html.unescape(line) #process all html entities
