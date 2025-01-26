@@ -26,7 +26,7 @@ with open(inFile, 'r') as f: #opens the original file for reading
         line = f.readline() #remove the line with the </script>
       line = re.sub("<.*?>","", line) #removes all text inside <>
       if(re.search("<", line)!=None): #if there's an open tag --> delete every line until it ends
-        while(re.search(">", line)==None): #this doesn't fully work bc sometimes a multi-line tag closes and the next opens in the same line --> it won't process the new one 
+        while(re.search(">", line)==None and re.search("<", line)==None): #when the second half is there is properly processes all script tags but does a worse job at multi-line tags
           line = f.readline()
         line = f.readline() #remove the last line of the tag
       line = html.unescape(line) #process all html entities
