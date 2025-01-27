@@ -1,0 +1,20 @@
+.search {
+    width: max-content;
+    display: flex;
+    align-items: centre;
+    padding: 14px;
+    border-radius: 28px;
+    background: #f6f6f6;
+    width: 600px;
+}
+
+.search-input {
+    font-size: 16px;
+    font-family: 'Lexend', sans-serif;
+    color: #333333;
+    margin-left: var(--padding);
+    outline: none;
+    border: none;
+    background: transparent;
+    flex: 1;
+}
