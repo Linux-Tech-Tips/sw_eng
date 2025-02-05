@@ -1,0 +1,298 @@
+
+> web_scraper@1.0.0 start
+> node start.js
+
+https://webscraper.io/test-sites/e-commerce/allinone
+https://webscraper.io/test-sites/e-commerce/allinone
+Promise { <pending> }
+[
+  'https://forum.webscraper.io/',
+  'https://chromewebstore.google.com/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn?hl=en',
+  'https://cloud.webscraper.io/',
+  'https://webscraper.io/downloads/Web_Scraper_Media_Kit.zip',
+  'https://forum.webscraper.io/',
+  'https://status.webscraper.io/',
+  'https://www.facebook.com/webscraperio/',
+  'https://twitter.com/webscraperio',
+  'https://lv.linkedin.com/company/web-scraper',
+  'https://youtube.com/@WebScraper/videos',
+  'https://chromewebstore.google.com/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn?hl=en'
+]
+[
+  'https://webscraper.io/test-sites/e-commerce/allinone',
+  '<!DOCTYPE html>\n' +
+    '<html lang="en">\n' +
+    '<head>\n' +
+    '\t<!-- Google Tag Manager -->\n' +
+    '<script nonce="VO3WgYrIu8AemuZdiavPzvWSW8Zma3zE">(function (w, d, s, l, i) {\n' +
+    '\t\tw[l] = w[l] || [];\n' +
+    '\t\tw[l].push({\n' +
+    "\t\t\t'gtm.start':\n" +
+    "\t\t\t\tnew Date().getTime(), event: 'gtm.js'\n" +
+    '\t\t});\n' +
+    '\t\tvar f = d.getElementsByTagName(s)[0],\n' +
+    "\t\t\tj = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';\n" +
+    '\t\tj.async = true;\n' +
+    '\t\tj.src =\n' +
+    "\t\t\t'https://www.googletagmanager.com/gtm.js?id=' + i + dl;\n" +
+    '\t\tf.parentNode.insertBefore(j, f);\n' +
+    "\t})(window, document, 'script', 'dataLayer', 'GTM-NVFPDWB');</script>\n" +
+    '<!-- End Google Tag Manager -->\n' +
+    '\t<title>Allinone | Web Scraper Test Sites</title>\n' +
+    '\t<meta charset="utf-8">\n' +
+    '\t<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">\n' +
+    '\n' +
+    '\t<meta name="keywords"\n' +
+    '\t\t  content="web scraping,Web Scraper,Chrome extension,Crawling,Cross platform scraper"/>\n' +
+    '\t<meta name="description"\n' +
+    '\t\t  content="Test Web Scraper&#039;s features and performance on mock e-commerce sites. Extract product data, prices, and categories in a controlled environment."/>\n' +
+    '\t<link rel="icon" sizes="128x128" href="/favicon.png" type="image/png">\n' +
+    '\t<link rel="icon" href="/favicon.ico" sizes="16x16 32x32" type="image/x-icon">\n' +
+    '\t<link rel="apple-touch-icon" href="/logo-icon.png" type="image/png">\n' +
+    '\t<link rel="icon" href="/icon.svg" type="image/svg+xml">\n' +
+    '\n' +
+    '\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+    '\t\n' +
+    '\t<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
+    '\t<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
+    '\t<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">\n' +
+    '\t<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">\n' +
+    '\n' +
+    '\t<link rel="stylesheet" href="/css/app.css?id=c4f94412a188f652d04799f62fe9513a">\n' +
+    '\t<link rel="stylesheet" href="/css/ws-icons.font.css?id=bc6c0d86aeabab8583f9814643f23faa">\n' +
+    '\n' +
+    '\t<link rel="canonical" href="https://webscraper.io/test-sites/e-commerce/allinone">\n' +
+    '\t<meta property="og:title" content="Allinone | Web Scraper Test Sites">\n' +
+    '\t<meta property="og:description" content="Test Web Scraper&#039;s features and performance on mock e-commerce sites. Extract product data, prices, and categories in a controlled environment.">\n' +
+    '\t<meta property="og:type" content="website">\n' +
+    '\t<meta property="og:url" content="https://webscraper.io/test-sites/e-commerce/allinone">\n' +
+    '\t<meta property="og:image" content="https://webscraper.io/webscraper-logo-header.png">\n' +
+    '\n' +
+    '\t<script defer src="/js/app.js?id=3219ca5da633c2c0b7aea29533e05b5e"></script>\n' +
+    '\n' +
+    '\t\n' +
+    '</head>\n' +
+    '<body>\n' +
+    '<!-- Google Tag Manager (noscript) -->\n' +
+    '<noscript>\n' +
+    '\t<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVFPDWB"\n' +
+    '\t        height="0" width="0" style="display:none;visibility:hidden"></iframe>\n' +
+    '</noscript>\n' +
+    '<!-- End Google Tag Manager (noscript) -->\n' +
+    '<header role="banner" class="navbar fixed-top navbar-expand-lg navbar-dark navbar-static svg-background" id="navbar-top">\n' +
+    '\t<div class="container">\n' +
+    '\n' +
+    '\t\t<div class="navbar-header">\n' +
+    '\n' +
+    '\t\t\t<a data-bs-toggle="collapse-side" data-bs-target=".side-collapse" data-bs-target-2=".side-collapse-container">\n' +
+    '\t\t\t\t<button type="button" class="navbar-toggler float-end collapsed" data-bs-toggle="collapse"\n' +
+    '\t\t\t\t\t\tdata-bs-target="#navbar" data-bs-target-2=".side-collapse-container" data-bs-target-3=".side-collapse"\n' +
+    '\t\t\t\t\t\taria-expanded="false" aria-controls="navbar">\n' +
+    '\n' +
+    '\t\t\t\t\t<span class="visually-hidden">Toggle navigation</span>\n' +
+    '\t\t\t\t\t<span class="icon-bar top-bar"></span>\n' +
+    '\t\t\t\t\t<span class="icon-bar middle-bar"></span>\n' +
+    '\t\t\t\t\t<span class="icon-bar bottom-bar"></span>\n' +
+    '\t\t\t\t\t<span class="icon-bar extra-bottom-bar"></span>\n' +
+    '\n' +
+    '\t\t\t\t</button>\n' +
+    '\t\t\t</a>\n' +
+    '\t\t\t<div class="navbar-brand">\n' +
+    '\t\t\t\t<a href="/"><img src="/img/logo_white.svg" alt="Web Scraper"></a>\n' +
+    '\t\t\t</div>\n' +
+    '\t\t</div>\n' +
+    '\n' +
+    '\t\t<div class="side-collapse in">\n' +
+    '\t\t\t<nav id="navbar" role="navigation" class="navbar-collapse collapse">\n' +
+    '\t\t\t\t<ul class="nav navbar-nav navbar-right">\n' +
+    '\t\t\t\t\t<li class="nav-item">\n' +
+    '\t\t\t\t\t\t<a href="/" class="nav-link menuitm">\n' +
+    '\t\t\t\t\t\t\t<p>Web Scraper</p>\n' +
+    '\t\t\t\t\t\t\t<div class="crta"></div>\n' +
+    '\t\t\t\t\t\t</a>\n' +
+    '\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t<li class="nav-item">\n' +
+    '\t\t\t\t\t\t<a href="/cloud-scraper" class="nav-link menuitm" id="cloud-nav-link">\n' +
+    '\t\t\t\t\t\t\t<p>Cloud Scraper</p>\n' +
+    '\t\t\t\t\t\t\t<div class="crta"></div>\n' +
+    '\t\t\t\t\t\t</a>\n' +
+    '\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t<li class="nav-item">\n' +
+    '\t\t\t\t\t\t<a href="/pricing" class="nav-link menuitm" id="pricing-nav-link">\n' +
+    '\t\t\t\t\t\t\t<p>Pricing</p>\n' +
+    '\t\t\t\t\t\t\t<div class="crta"></div>\n' +
+    '\t\t\t\t\t\t</a>\n' +
+    '\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t<li class="nav-item dropdown">\n' +
+    '\t\t\t\t\t\t<button class="menuitm nav-link dropdown-toggle" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +
+    '\t\t\t\t\t\t\t<p>\n' +
+    '\t\t\t\t\t\t\t\tLearn\n' +
+    '\t\t\t\t\t\t\t\t<i class="ws-icon ws-icon-down"></i>\n' +
+    '\t\t\t\t\t\t\t</p>\n' +
+    '\t\t\t\t\t\t\t<span class="crta"></span>\n' +
+    '\t\t\t\t\t\t</button>\n' +
+    '\t\t\t\t\t\t<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">\n' +
+    '\t\t\t\t\t\t\t<li>\n' +
+    '\t\t\t\t\t\t\t\t<a href="/documentation" class="dropdown-item">Documentation</a>\n' +
+    '\t\t\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t\t\t<li>\n' +
+    '\t\t\t\t\t\t\t\t<a href="/tutorials" class="dropdown-item">Video Tutorials</a>\n' +
+    '\t\t\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t\t\t<li>\n' +
+    '\t\t\t\t\t\t\t\t<a href="/test-sites" class="dropdown-item">Test Sites</a>\n' +
+    '\t\t\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t\t\t<li>\n' +
+    '\t\t\t\t\t\t\t\t<a href="https://forum.webscraper.io/" target="_blank" rel="noopener" class="dropdown-item">Forum</a>\n' +
+    '\t\t\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t\t</ul>\n' +
+    '\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t<li class="nav-item">\n' +
+    '\t\t\t\t\t\t<a href="https://chromewebstore.google.com/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn?hl=en" target="_blank" class="nav-link btn-menu1 install-extension">Install</a>\n' +
+    '\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t<li class="nav-item">\n' +
+    '\t\t\t\t\t\t<a href="https://cloud.webscraper.io/" class="nav-link btn-menu2">Cloud Login</a>\n' +
+    '\t\t\t\t\t</li>\n' +
+    '\t\t\t\t</ul>\n' +
+    '\t\t\t</nav>\n' +
+    '\t\t</div>\n' +
+    '\t</div>\n' +
+    '</header>\n' +
+    '\n' +
+    '<div class="wrapper">\n' +
+    '\t\t<div class="formenu-here container-fluid">\n' +
+    '\n' +
+    '\t</div>\n' +
+    '\t<div class="container-fluid blog-hero">\n' +
+    '\t\t<div class="container">\n' +
+    '\t\t\t<div class="row">\n' +
+    '\t\t\t\t<div class="col-lg-12">\n' +
+    '\t\t\t\t\t<h1>Test Sites</h1>\n' +
+    '\t\t\t\t</div>\n' +
+    '\t\t\t</div>\n' +
+    '\t\t</div>\n' +
+    '\t</div>\n' +
+    '\n' +
+    '\t<div class="container test-site">\n' +
+    '\t\t<div class="row">\n' +
+    '\t\t\t<div class="col-lg-3 sidebar">\n' +
+    '\t\t\t\t\t<div class="navbar-light sidebar" role="navigation">\n' +
+    '\t<div class="sidebar-nav navbar-collapse">\n' +
+    '\t\t<ul class="nav flex-column" id="side-menu">\n' +
+    '\n' +
+    '\t\t\t<li class="nav-item  active ">\n' +
+    '\t\t\t\t<a href="/test-sites/e-commerce/allinone" class="nav-link">Home</a>\n' +
+    '\t\t\t</li>\n' +
+    '\n' +
+    '\t\t\t\t\t\t<li class="nav-item ">\n' +
+    '\t\t\t\t<a href="/test-sites/e-commerce/allinone/computers" class="category-link nav-link " aria-label="Navigation category">\n' +
+    '\t\t\t\t\tComputers\n' +
+    '\t\t\t\t\t<i class="ws-icon  ws-icon-right " aria-hidden="true"></i>\n' +
+    '\t\t\t\t</a>\n' +
+    '\n' +
+    '\t\t\t\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t\t<li class="nav-item ">\n' +
+    '\t\t\t\t<a href="/test-sites/e-commerce/allinone/phones" class="category-link nav-link " aria-label="Navigation category">\n' +
+    '\t\t\t\t\tPhones\n' +
+    '\t\t\t\t\t<i class="ws-icon  ws-icon-right " aria-hidden="true"></i>\n' +
+    '\t\t\t\t</a>\n' +
+    '\n' +
+    '\t\t\t\t\t\t\t\t</li>\n' +
+    '\t\t\t\t\t</ul>\n' +
+    '\t</div>\n' +
+    '</div>\n' +
+    '\n' +
+    '\t\t\t</div>\n' +
+    '\t\t\t<div class="col-lg-9">\n' +
+    '\t\t\t\t\n' +
+    '\t<div class="jumbotron">\n' +
+    '\t\t<h2>E-commerce training site</h2>\n' +
+    '\t\t<p class="lead">\n' +
+    '\t\t\tWelcome to WebScraper e-commerce site. You can use this site for training\n' +
+    '\t\t\tto learn how to use the Web Scraper. Items listed here are not for sale.\n' +
+    '\t\t</p>\n' +
+    '\t</div>\n' +
+    '\n' +
+    '\t<h3>Top items being scraped right now</h3>\n' +
+    '\n' +
+    '\t<div class="row">\n' +
+    '\t\t\t<div class="col-md-4 col-xl-4 col-lg-4">\n' +
+    '\t<div class="card thumbnail">\n' +
+    '\t\t<div class="product-wrapper card-body">\n' +
+    '\t\t\t<img class="img-fluid card-img-top image img-responsive" alt="item" src="/images/test-sites/e-commerce/items/cart2.png">\n' +
+    '\t\t\t<div class="caption">\n' +
+    '\t\t\t\t<h4 class="price float-end card-title pull-right">$1223.99</h4>\n' +
+    '\t\t\t\t<h4>\n' +
+    '\t\t\t\t\t<a href="/test-sites/e-commerce/allinone/product/43" class="title" title="ThinkPad Yoga">ThinkPad Yoga</a>\n' +
+    '\t\t\t\t</h4>\n' +
+    '\t\t\t\t<p class="description card-text">12.5&quot; Touch, Core i5 4200U, 8GB, 500GB + 16GB SSD Cache, Windows</p>\n' +
+    '\n' +
+    '\t\t\t</div>\n' +
+    '\t\t\t<div class="ratings">\n' +
+    '\t\t\t\t<p class="review-count float-end">2 reviews</p>\n' +
+    '\t\t\t\t<p data-rating="3">\n' +
+    '\t\t\t\t\t\t\t\t\t\t<span class="ws-icon ws-icon-star"></span>\n' +
+    '\t\t\t\t\t\t\t\t\t\t<span class="ws-icon ws-icon-star"></span>\n' +
+    '\t\t\t\t\t\t\t\t\t\t<span class="ws-icon ws-icon-star"></span>\n' +
+    '\t\t\t\t\t\t\t\t\t</p>\n' +
+    '\t\t\t</div>\n' +
+    '\t\t</div>\n' +
+    '\t</div>\n' +
+    '</div>\n' +
+    '\t\t\t<div class="col-md-4 col-xl-4 col-lg-4">\n' +
+    '\t<div class="card thumbnail">\n' +
+    '\t\t<div class="product-wrapper card-body">\n' +
+    '\t\t\t<img class="img-fluid card-img-top image img-responsive" alt="item" src="/images/test-sites/e-commerce/items/cart2.png">\n' +
+    '\t\t\t<div class="caption">\n' +
+    '\t\t\t\t<h4 class="price float-end card-title pull-right">$577.99</h4>\n' +
+    '\t\t\t\t<h4>\n' +
+    '\t\t\t\t\t<a href="/test-sites/e-commerce/allinone/product/44" class="title" title="HP 350 G1">HP 350 G1</a>\n' +
+    '\t\t\t\t</h4>\n' +
+    '\t\t\t\t<p class="description card-text">15.6&quot;, Core i5-4200U, 4GB, 750GB, Radeon HD8670M 2GB, Windows</p>\n' +
+    '\n' +
+    '\t\t\t</div>\n' +
+    '\t\t\t<div class="ratings">\n' +
+    '\t\t\t\t<p class="review-count float-end">10 reviews</p>\n' +
+    '\t\t\t\t<p data-rating="2">\n' +
+    '\t\t\t\t\t\t\t\t\t\t<span class="ws-icon ws-icon-star"></span>\n' +
+    '\t\t\t\t\t\t\t\t\t\t<span class="ws-icon ws-icon-star"></span>\n' +
+    '\t\t\t\t\t\t\t\t\t</p>\n' +
+    '\t\t\t</div>\n' +
+    '\t\t</div>\n' +
+    '\t</div>\n' +
+    '</div>\n' +
+    '\t\t\t<div class="col-md-4 col-xl-4 col-lg-4">\n' +
+    '\t<div class="card thumbnail">\n' +
+    '\t\t<div class="product-wrapper card-body">\n' +
+    '\t\t\t<img class="img-fluid card-img-top image img-responsive" alt="item" src="/images/test-sites/e-commerce/items/cart2.png">\n' +
+    '\t\t\t<div class="caption">\n' +
+    '\t\t\t\t<h4 class="price float-end card-title pull-right">$1239.2</h4>\n' +
+    '\t\t\t\t<h4>\n' +
+    '\t\t\t\t\t<a href="/test-sites/e-commerce/allinone/product/129" class="title" title="Asus ZenBook UX530UX-FY040T Blue">Asus ZenBook U...</a>\n' +
+    '\t\t\t\t</h4>\n' +
+    '\t\t\t\t<p class="description card-text">Asus ZenBook UX530UX-FY040T Blue, 15.6&quot; FHD, Core i7-7500U, 8GB, 512GB SSD, GeForce GTX950M 2GB, Windows 10 Home, Eng kbd</p>\n' +
+    '\n' +
+    '\t\t\t</div>\n' +
+    '\t\t\t<div class="ratings">\n' +
+    '\t\t\t\t<p class="review-count float-end">14 reviews</p>\n' +
+    '\t\t\t\t<p data-rating="1">\n' +
+    '\t\t\t\t\t\t\t\t\t\t<span class="ws-icon ws-icon-star"></span>\n' +
+    '\t\t\t\t\t\t\t\t\t</p>\n' +
+    '\t\t\t</div>\n' +
+    '\t\t</div>\n' +
+    '\t</div>\n' +
+    '</div>\n' +
+    '\t</div>\n' +
+    '\n' +
+    '<div id="static-pagination">\n' +
+    '\t</div>\n' +
+    '\t\t\t</div>\n' +
+    '\t\t</div>\n' +
+    '\t</div>\n' +
+    '\t<div class="clearfix"></div>\n' +
+    '\t<div class="push"></div>\n' +
+    '</div>\n' +
+    '\n' +
+    '<div class="container-fluid footer" id="layout-footer">\n' +
+    '\t<div class="container">\n' +
+    '\t\t<div '... 2984 more characters
+]

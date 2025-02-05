@@ -1,0 +1,8 @@
+# Create a page structure that holds the html data, url, and links 
+ 
+Page {
+    url,
+    html_data,
+    links,
+    score,
+}
