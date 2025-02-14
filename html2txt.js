@@ -2,9 +2,10 @@ import { parse } from 'node-html-parser';
 import {decode} from 'html-entities';
 
 function html2txt(input) {
+  let file = fs.readFileSync(input);
   const returnValues = []; //array for output, [0] = title, [1] = body text
-  let root = parse(input); //parse the input
-  returnValues[0] = root.getElementsByTagName('title'); //save the title in a separate field
+  let root = parse(file); //parse the input
+  returnValues[0] = root.getElementsByTagName('title').toString().replace(/(<([^>]+)>)/ig, '');
   const head = root.getElementsByTagName('head');//fetch all script elements
   [...head].forEach(tag => tag.remove());//remove them
   const scriptTags = root.getElementsByTagName('script');//fetch all script elements
@@ -16,5 +17,6 @@ function html2txt(input) {
   returnValues[1] = root;
   return returnValues;
 }
+
 
 
