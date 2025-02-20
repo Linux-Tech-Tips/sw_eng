@@ -1,4 +1,4 @@
-
+module.exports = { jaro, jaro_winkler };
 
 function jaro(query, word) {
     if (query == word) {
@@ -67,6 +67,8 @@ function common_prefix(word1, word2) {
     return Math.max(result, 4);
 }
 
+
+// may not even be needed since it's more 
 function jaro_winkler(query, word) {
     let jaro_sim = jaro(query, word);
     // Standard value for the constant.
@@ -82,15 +84,17 @@ function page_process(query, page) {
     var result = 0.0;
     var words = page.split(' ');
     for ( word of words ) {
-        console.log(word);
         result = Math.max(result, jaro(query, word));
     }
     return result;
 }
 
-console.log(jaro("This is an example sentence.", "This is an example sentence.")) // 1.0
-console.log(jaro("This is an exanple sentence.", "This is an example sentence.")) // Something around 0.9 ish
-console.log(jaro("example sentence", "This is an example sentence.")) // something a bit below 1.0 but still high
-console.log(jaro("No words here are the same.", "This is an example sentence.")) // 0.0
+
+//console.log(jaro("This is an example sentence.", "This is an example sentence.")) // 1.0
+//console.log(jaro("This is an exanple sentence.", "This is an example sentence.")) // Something around 0.9 ish
+//console.log(jaro("example sentence", "This is an example sentence.")) // something a bit below 1.0 but still high
+
+// Needs to be fine-tuned so that there's a higher difference between sentences.
+//console.log(jaro("No words here are the same.", "This is an example sentence.")) // 0.0
 
 

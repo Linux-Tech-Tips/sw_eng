@@ -1,0 +1,11 @@
+html.txt
+robots.txt
+robot-info.txt
+sitemap.txt
+index.html
+todo.txt 
+style.css
+/node_modules
+test.txt
+*.json
+start-copy.js
