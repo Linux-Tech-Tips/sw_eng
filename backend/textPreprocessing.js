@@ -1,19 +1,23 @@
-//function that takes a string and returns a string without punctuation, stopwords, and all in lowercase
-//local tests with files commented out
+const sw = require('stopword')
 
-//import fs from 'fs';
-import * as sw from 'stopword';
-
+//function that takes a string and returns a string without punctuation, stopwords, whitespace, and all in lowercas
 function stripText(input) {
+  
   let text = input.toLowerCase();
+  
+  //remove punctuation
   text = text.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '')
+  
+  //remove whitespace
+  text = text.replace(/[\t\n\r]/g,'');
+
+  //remove stopwords
   let textArray = text.split(' ');
-  textArray = sw.removeStopwords(textArray);
+  textArray = sw.removeStopwords(textArray); 
   text = textArray.join(' ');
+  
   return text;
 }
 
-/*let file = fs.readFileSync('/Users/elisabeth/Desktop/Year2/SWE/SWE/vocab.txt');
-file = file.toString();
-fs.writeFileSync('/Users/elisabeth/Desktop/Year2/SWE/SWE/vocab.txt', stripText(file));
-*/
+console.log(stripText("Hello! I am a sentence with stop words in it!"));
+
