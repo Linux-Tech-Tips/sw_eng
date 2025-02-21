@@ -1,11 +1,4 @@
-# Software Engineering Project
+# Technical Documentation Search (TDS) Engine
 
-Software Engineering project repository, for the entire Software Engineering project.
+This is a repository containing the TDS Engine group project, developed for the Software Engineering class in the University of Galway.
 
-Dedicated to the late Backend, he was much loved in life <3
-
-A moment of silence for our fallen soldier.
-
-Llamas are amazing, but alpacas are the GOATT 🐐 🐐 🐐 🐐 (rip our fallen soldier who has been reincarnated as an alpaca)
-
-Hewwo :3
