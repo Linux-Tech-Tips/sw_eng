@@ -17,7 +17,7 @@ for(let i=0; i<glove.length; i++) { //for all entries in the original array
     tempArray[0] = glove[i].substring(0, glove[i].indexOf(' '));
     tempArray = sw.removeStopwords(tempArray); //call removeStopwords on it
     if(tempArray.length>0) {  //if the word still exists add it to the new array
-      gloveArray[glove[i].substring(0, glove[i].indexOf(' '))] = glove[i].substring(glove[i].indexOf(' ') +1); //set the vector as the entry indexed to the word
+      gloveArray[glove[i].substring(0, glove[i].indexOf(' '))] = glove[i].substring(glove[i].indexOf(' ') +1).split(' '); //set the vector as the entry indexed to the word
       
     }
   }
