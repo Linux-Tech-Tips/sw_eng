@@ -1,5 +1,10 @@
 /* File containing utility functions to work with the Firestore database */
-module.exports = { dbGetCollection, dbGetDocument, dbSetDocument }
+module.exports = { dbGetCollection, dbGetDocument, dbSetDocument,
+		    dbGetPage, dbGetPages, dbSetPage, 
+		    dbGetWord, dbSetWord,
+		    dbGetPageVec, dbSetPageVec,
+		    dbGetPageMetadata, dbSetPageMetadata,
+		    dbGetPageContent, dbSetPageContent };
 
 const { initializeApp } = require('firebase-admin/app');
 const { getFirestore } = require('firebase-admin/firestore');
@@ -29,3 +34,70 @@ async function dbSetDocument(colName, docName, docObject) {
     return true;
 }
 
+/* --- Project-specific database functions */
+
+/* Page Functions */
+
+async function dbGetPage(pageUrl) {
+    let result = await dbGetDocument("pages", pageUrl);
+    return result;
+}
+
+async function dbGetPages(pageSite) {
+    let result = await db.collection("pages").where("pageSite", "==", pageSite).get();
+    return result;
+}
+
+async function dbSetPage(pageUrl, pageSite, dateAdded, pageTitle, pageID) {
+    let docObj = {
+    	pageSite: pageSite,
+	dateAdded: dateAdded,
+	pageTitle: pageTitle,
+	pageID: pageID
+    };
+    await dbSetDocument("pages", pageUrl, docObj);
+}
+
+/* Word Functions */
+
+async function dbGetWord(word) {
+    let result = await dbGetDocument("words", word);
+    return result;
+}
+
+async function dbSetWord(word, vec) {
+    await dbSetDocument("words", word, {vec: vec});
+}
+
+/* Page Specific Functions */
+
+async function dbGetPageVec(pageID) {
+    let result = await dbGetDocument("pageVec", pageID);
+    return result;
+}
+
+async function dbSetPageVec(pageID, matrix, percentKnown) {
+    let docObj = {
+	matrix: matrix,
+	percentKnowns: percentKnown
+    };
+    await dbSetDocument("pageVec", pageID, docObj);
+}
+
+async function dbGetPageMetadata(pageID) {
+    let result = await dbGetDocument("pageMetadata", pageID);
+    return result;
+}
+
+async function dbSetPageMetadata(pageID, termFrequency) {
+    await dbSetDocument("pageMetadata", pageID, {termFrequency: termFrequency});
+}
+
+async function dbGetPageContent(pageID) {
+    let result = await dbGetDocument("pageContent", pageID);
+    return result;
+}
+
+async function dbSetPageContent(pageID, processedPage) {
+    await dbSetDocument("pageContent", pageID, {processedPage: processedPage});
+}
