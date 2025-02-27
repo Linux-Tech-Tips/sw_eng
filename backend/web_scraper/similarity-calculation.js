@@ -58,7 +58,8 @@ function jaro(query, word) {
 // an equivalent of an activation function is required in order to skew the values of the similarity score towards what's required.
 function correction(score, threshold) {
     // so far a value of exactly 1 leads towards 0.5
-    return 1 / (1 + Math.exp(1 - score));
+    let exponent = 1 + Math.pow(score, threshold);
+    return Math.pow(score, exponent);
 }
 
 // merge page_process and term_comparison such that, there's only one function that takes in the query and the page.
