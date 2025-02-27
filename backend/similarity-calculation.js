@@ -67,21 +67,25 @@ function correction(score, threshold) {
 // reduce all gathered values into a singular one
 // and return it.
 
+// input: 
+// -> query [ list of words ]
+// -> page [ list of words ]
+
+// output: a score between 0 and 1
 function calculate_similarity_score(query, page) {
 	var result = 0.0;
+    
+    // a more permissable threshold for fuzzy searching.
     var threshold = 0.85;
-	var query_terms = query.split(' ');
     // The terms of the query are stored into a hashmap and their values are initially set to 0.0
 	var query_map = new Map();
-	query_terms.forEach((term) => {
+	query.forEach((term) => {
 		query_map.set(term, 0.0);
 	});
 
-	var query_length = query_terms.length;
-	// as of now the page is split into words in the function, this was for testing purposes and for that it will be removed.
-    var words = page.split(' ');
+	var query_length = query.length;
 
-	for ( word of words ) {
+	for ( word of page ) {
 		for ( term of query_terms ) {
             // comparing each term of the query with each word in the page (efficiency is to be improved)
             // if the jaro similarity of the term with the currently checked word is greater than the previously stored value, update the hashmap.
@@ -90,21 +94,9 @@ function calculate_similarity_score(query, page) {
 		}
 	}
     // afterwards, retrive all of the values from the query map and "normalise" them.
-	for ( term of query_terms ) {
+	for ( term of query ) {
 		result += query_map.get(term) / query_length;
 	}
     // apply a correction function which to ensure that values below a certain threshold are skewed towards 0 and those above it are skewed towards 1.
 	return correction(result, threshold);
 }
-
-
-// the test cases.
-console.log(calculate_similarity_score("Those", "This is an example sentence."));
-console.log(calculate_similarity_score("This is an example sentence.", "This is an example sentence.")) // 1.0
-console.log(calculate_similarity_score("This is an exanple sentence.", "This is an example sentence.")) // Something around 0.9 ish
-console.log(calculate_similarity_score("example sentence", "This is an example sentence.")) // something a bit below 1.0 but still high
-
-// Needs to be fine-tuned so that there's a higher difference between sentences.
-console.log(calculate_similarity_score("No words here are the same.", "This is an example sentence.")) // 0.0
-
-

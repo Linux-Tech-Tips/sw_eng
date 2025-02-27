@@ -1,7 +1,5 @@
 
 const crawler = require("./crawler.js");
-const similarity = require("./similarity-calculation.js");
-
 const cheerio = require("cheerio");
 const axios = require("axios");
 const parse = require('robots-txt-parse');

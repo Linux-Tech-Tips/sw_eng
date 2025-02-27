@@ -1,4 +1,5 @@
 
+
 module.exports = { extractAllLinks };
 // A dfs implementation using a stack to store both the pagedata and the links associated with the page data.
 async function extractAllLinks(url, domain, limit) {
