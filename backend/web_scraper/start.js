@@ -1,20 +1,22 @@
 
 const crawler = require("./crawler.js");
-const page_processor = require("./page-processor.js");
+const similarity = require("./similarity-calculation.js");
+
 const cheerio = require("cheerio");
 const axios = require("axios");
 const parse = require('robots-txt-parse');
 const fs = require('fs');
-// not fully my own tbh.
+
 
 
 // A lambda function that is supposed to place the crawler to "sleep" for a short amount of time so that it's not automatically banned.
 const delay = (tm) => {setTimeout(() => {}, tm * 1000)};
+
 // Place a mock data response when testing this for the web crawler.
 async function getPageData(url) {
     //const response = await axios.get(url);
     //console.log(url);
-    const delayTime = 3;
+    const delayTime = 5;
     const response = await axios.request({
         method: "GET",
         url: url,
@@ -40,9 +42,6 @@ async function storeRobotsData(data) {
         console.log("robots data stored.");
     })
 }
-// async function printPageData(query, page) {}
-
-
 // not fully my own tbh.
 
 
@@ -87,6 +86,7 @@ async function extractRules(robots) {
     let result = [];
     let data = await robots;
     for (let group of (data['groups'])) {
+        // because this is a custom crawler for a custom search engine, we will have to use the wildcard agent rules.
         if (group["agents"] == "*") {
             //result.concat(group['rules']);
             for (let rule of group['rules']) {
@@ -130,11 +130,3 @@ let urlObject = new URL(url);
 
 extractRuleCategories(robots);
 filterRules("allow", robots);
-//console.log(websiteFormatter(url, 'sitemap.xml'));
-//console.log(urlObject.hostname);
-
-
-// These functions were used for ensureing
-// storePageData(url, "test.txt");
-//storePageData(websiteFormatter(url_test, 'robots.txt'), 'robots.txt');
-//storePageData(websiteFormatter(url, 'sitemap.xml'), 'sitemap.txt');

@@ -12,8 +12,14 @@ async function extractAllLinks(url, domain, limit) {
     while(stack.length > 0 && limit > 0) {
         // ..
         currentUrl = stack.pop();
+        currentDomain = new URL(currentUrl).hostname;
+
         //console.log(currentUrl);
 
+        if (currentDomain != domain) {
+            visitedUrls[currentUrl] = true;
+            continue;
+        }
         let pageData = await getPageData(currentUrl);
         let links = await extractLinks(pageData);
         //console.log(links);
