@@ -1,5 +1,9 @@
 /* Main file containing the Search Engine API JavaScript Functions */
 
+const textProcessing = require("./textProcessing.js");
+const dbUtil = require("./dbUtil.js");
+
+const metadata = require("./metadata.js");
 
 /* Takes in a search query as an unprocessed string, returns sorted array of JavaScript objects containing page information, from highest to lowest score.
  * Page info object:
@@ -9,41 +13,80 @@
  *    pageScore: float
  *  }
  */
-function search(query) {
+async function search(query) {
 
-    // TODO This function needs to be implemented. For its implementation, all the other components must be finished first. For now, this serves as a placeholder.
+    /* Preprocess query */
+    let stripQuery = textProcessing.stripText(query);
 
-    // Step 1: Process the query using a preprocessor
-    //  -> Required function: takes an unprocessed string as an argument, returns string containing space-separated preprocessed words
+    /* Get all scores */
+    let [metadataScore, meaningScore, contentScore] = await Promise.all([metadataScore(stripQuery), meaningScore(stripQuery), contentScore(stripQuery)]);
 
-    // Step 2: Go through all existing pages in the database, call score calculation function on query and page
-    //  -> Required function: Function that uses all three existing processors to calculate a final score using the formula from REQ_DOC
+    /* Go through all page IDs, get score */
+    let pages = await dbUtil.dbGetCollection("pages");
+    let result = [];
 
-    // Step 3: Return aggregate result
+    pages.forEach(doc => {
+	let pageID = doc.data().pageID;
+	let score = getScore(metadataScore[pageID], 0.5, meaningScore[pageID][0], meaningScore[pageID][1], contentScore[pageID]);
+	result.push({
+	    pageTitle: doc.data().pageTitle,
+	    pageUrl: doc.id,
+	    pageScore: score
+	});
+    });
 
+    /* Sort and return resulting array */
+    result.sort((a, b) => {
+	return a.pageScore - b.pageScore;
+    });
+    return result;
+}
+
+/* Takes in the three scores from each engine component, as well as the confidence value and relevance constant, and returns the resulting score */
+function getScore(metadataScore, metadataRelevance, meaningScore, confidenceValue, contentScore) {
+    return (metadataRelevance * metadataScore) + (1 - metadataRelevance) * ((confidenceValue * meaningScore) + (1 - confidenceValue) * contentScore);
 }
 
 
-// TBD The way the page is passed into this depends on the final database design
-/* Takes in a preprocessed query string and the numeric ID of a page, and returns a similarity score based on the formula */
-function getScore(pQuery, pageID) {
+/* Takes in a preprocessed search query, returns a list of metadata scores, indexed by pageID */
+async function metadataScore(pQuery) {
 
-    // TODO This function needs to be implemented. For its implementation, other components must be finished first.
+    let pageData = await dbUtil.dbGetCollection("pageMetadata");
+    let result = [];
 
-    // Step 1: Send query and required page referene/identifier into each query matching function
-    // Step 2: Calculate final score from the three scores, and return the result
+    pageData.forEach(doc => {
+	let pageID = doc.id;
+	result[pageID] = metadata.metadataScore(pQuery, doc.data().termFrequency);
+    });
+    return result;
+}
 
-    // Variables necessary for the formula:
-    //  -> Metadata relevance constant - arbitrary value
-    //  -> Confidence value - calculated by word meaning match function
+/* Takes in a preprocessed search query, returns a list of lists of word meaning scores and confidence values, indexed by pageID */
+async function meaningScore(pQuery) {
 
-    // Required function interfaces:
-    //  -> Functions to calculate score:
-    //    -> Function taking a string query and page identifier (based on Database design), which returns word meaning correlation score and the confidence value (based on both page and query)
-    //    -> Function taking a string query and page identifier, which returns the word content correlation score
-    //    -> Function taking a string query and page identifier, which returns the metadata correlation score
+    let pageData = await dbUtil.dbGetCollection("pageVec");
+    let result = [];
 
-    // Things to consider based on database read/write speed:
-    //  -> Will it be faster to fetch each page separately by ID to save memory, or to fetch all pages at once, to save DB read ops and cpu time?
+    pageData.forEach(doc => {
+	let pageID = doc.id;
+	// TODO FUNCTION THAT RETURNS SCORE, GIVEN QUERY AND PAGE DATA FROM DATABASE
+	//result[pageID] = ...
+	result[pageID] = [0.5, 0.5]; // FIXME PLACEHOLDER
+    });
+    return result;
+}
 
+/* Takes in a preprocessed search query, returns a list of word content scores, indexed by pageID */
+async function contentScore(pQuery) {
+
+    let pageData = await dbUtil.dbGetCollection("pageContent");
+    let result = [];
+
+    pageData.forEach(doc => {
+	let pageID = doc.id;
+	// TODO FUNCTION THAT RETURNS SCORE, GIVEN QUERY AND PAGE DATA FROM DATABASE
+	//result[pageID] = ...
+	result[pageID] = 0.5; // FIXME PLACEHOLDER
+    });
+    return result;
 }
