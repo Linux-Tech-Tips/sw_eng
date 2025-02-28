@@ -4,6 +4,7 @@ const textProcessing = require("./textProcessing.js");
 const dbUtil = require("./dbUtil.js");
 
 const metadata = require("./metadata.js");
+const content = require("./similarity-calculation.js");
 
 /** Takes in a search query as an unprocessed string, returns sorted array of JavaScript objects containing page information, from highest to lowest score.
  * Page info object:
@@ -84,9 +85,7 @@ async function contentScore(pQuery) {
 
     pageData.forEach(doc => {
 	let pageID = doc.id;
-	// TODO FUNCTION THAT RETURNS SCORE, GIVEN QUERY AND PAGE DATA FROM DATABASE
-	//result[pageID] = ...
-	result[pageID] = 0.5; // FIXME PLACEHOLDER
+	result[pageID] = content.calculate_similarity_score(pQuery, pageData.processedPage);
     });
     return result;
 }
