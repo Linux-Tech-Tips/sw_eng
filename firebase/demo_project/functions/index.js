@@ -17,6 +17,43 @@ exports.helloWorld = onRequest((request, response) => {
   response.send("Hello from Firebase!");
 });
 
+exports.addDemoPage = onRequest(async (request, response) => {
+    /* First, get last page ID */
+    let lastID = await dbUtil.dbGetLastID();
+    ++lastID;
+
+    /* Populate Page with dummy data */
+    await dbUtil.dbSetPage("pageDemo" + lastID, "DEMO_PAGES", new Date(), "Page Demo #" + lastID, lastID);
+
+    /* Populate all components with dummy data */
+
+    /* Metadata */
+    let metadata = {};
+    for(let i = 0; i < 20; ++i) {
+	metadata["word" + i] = 1/i;
+    }
+    await dbUtil.dbSetPageMetadata(lastID.toString(), metadata);
+
+    /* Word Meaning Data */
+    let pageMatrix = {};
+    for(let i = 0; i < 30; ++i) {
+	pageMatrix[i.toString()] = [];
+	for(let j = 0; j < 50; ++j) {
+	    pageMatrix[i][j] = Math.random();
+	}
+    }
+    console.log("Created matrix: " + pageMatrix + "under ID " + lastID.toString());
+    await dbUtil.dbSetPageVec(lastID.toString(), pageMatrix, 0.5);
+    console.log("Written page vec data")
+
+    /* Word Content Data */
+    await dbUtil.dbSetPageContent(lastID.toString(), "word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30");
+
+    /* Save new page ID */
+    await dbUtil.dbSetLastID(lastID);
+    response.send("<pre>Added new Dummy page of ID " + lastID + "</pre>");
+})
+
 exports.readTest = onRequest(async (request, response) => {
     /* Get collection request parameter, set to default if not present */
     let col = request.query.col;
