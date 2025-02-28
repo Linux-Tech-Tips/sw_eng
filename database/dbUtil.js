@@ -2,6 +2,7 @@
 module.exports = { dbGetCollection, dbGetDocument, dbSetDocument,
 		    dbGetPage, dbGetPages, dbSetPage, 
 		    dbGetWord, dbSetWord,
+		    dbGetLastID, dbSetLastID,
 		    dbGetPageVec, dbSetPageVec,
 		    dbGetPageMetadata, dbSetPageMetadata,
 		    dbGetPageContent, dbSetPageContent };
