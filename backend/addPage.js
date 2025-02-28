@@ -16,10 +16,14 @@ async function addPage(baseUrl) {
 	pages[idx][1] = textProcessing.stripText(pages[idx][1]);
     }
 
+    let lastPageID = dbUtil.dbGetLastID();
+
     /* Go through preprocessed pages, save into database */
     for(page of pages) {
-	// TODO Finish this once next page ID obtainable
+	// TODO Based on the Crawler, figure out approach to get page URL as well, then finish implementation here
     }
+
+    dbUtil.dbSetLastID(lastPageID);
 
     // TODO Based on how the Crawler works, this will differ - either JS array of HTML pages, or list of crawlable sites for which HTML will be obtained independently
     // Steps:
