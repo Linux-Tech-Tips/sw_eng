@@ -1,5 +1,10 @@
 //script that processes the original file of word vectors into a filtered file in JSON formatting
 
+module.export = {uploadVocab};
+
+async function uploadVocab() {
+
+const db = require('dbUtil');
 const  fs = require('fs');
 const sw = require('stopword');
 
@@ -17,10 +22,11 @@ for(let i=0; i<glove.length; i++) { //for all entries in the original array
     tempArray[0] = glove[i].substring(0, glove[i].indexOf(' '));
     tempArray = sw.removeStopwords(tempArray); //call removeStopwords on it
     if(tempArray.length>0) {  //if the word still exists add it to the new array
-      gloveArray[glove[i].substring(0, glove[i].indexOf(' '))] = glove[i].substring(glove[i].indexOf(' ') +1).split(' '); //set the vector as the entry indexed to the word
+      await db.dbSetWord(glove[i].substring(0, glove[i].indexOf(' ')), glove[i].substring(glove[i].indexOf(' ') +1).split(' ')); //add the word to the database
+      //gloveArray[glove[i].substring(0, glove[i].indexOf(' '))] = glove[i].substring(glove[i].indexOf(' ') +1).split(' '); //set the vector as the entry indexed to the word
       
     }
   }
 }
-
-fs.writeFileSync('glove.txt', JSON.stringify(gloveArray));
+}
+//fs.writeFileSync('glove.txt', JSON.stringify(gloveArray));
