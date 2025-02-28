@@ -3,19 +3,21 @@
 module.exports = { stringToMatrix, meaningSearch };
 
 //function to turn a given (preprocessed) string into an array of vectors
-//the first entry in the array is a percentage of how many words were found in the lookup table
+//the first entry in the array is a percentage of how many words were found in the lookup table TBD: in database structure this would actually just be written as a separate thing
 
 function stringToMatrix(text) {
-
+  
   //split the given text into an array, create empty array for vectors
   let textArray = text.split(' ');
   let vectorisedText = {};
   vectorisedText[0] = 0; //counter for how many words were found, will be converted to a percentage
+  let key = 0; //key for making the matrix of vectors an object
 
   //loop through the array, if the word is findable in the vector table --> add it and increment the counter of how many words were found
   for(let i=1; i<=textArray.length; i++) {
-    if(vectorArray[textArray[i]]!=undefined){ //TBD: call the database to check if the word is defined
-      vectorisedText[i] = vectorArray[textArray[i]]; //TBD: fetch the vector from the databse
+    if(vectorArray[textArray[i]]!=undefined){ //TBD: call the database to check if the word is defined, this shouldn't be done with 'vectorArray'
+      key = i;
+      vectorisedText[key] = vectorArray[textArray[i]]; //TBD: fetch the vector from the databse
       vectorisedText[0]++;
     }
 
@@ -75,3 +77,4 @@ function meaningSearch(query, page) {
   return avgSimilarity; //TBD: needs to calculate smth with the percentages of words known
 
 }
+
