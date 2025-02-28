@@ -69,6 +69,17 @@ async function dbSetWord(word, vec) {
     await dbSetDocument("words", word, {vec: vec});
 }
 
+/* Database Metadata Functions */
+
+async function dbGetLastID() {
+    let result = await dbGetDocument("dbMetadata", "dbMetadata");
+    return result.data().lastPageID;
+}
+
+async function dbSetLastID(newID) {
+    await dbSetDocument("dbMetadata", "dbMetadata", { lastPageID: newID });
+}
+
 /* Page Specific Functions */
 
 async function dbGetPageVec(pageID) {
