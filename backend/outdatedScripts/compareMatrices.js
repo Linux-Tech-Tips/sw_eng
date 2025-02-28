@@ -23,6 +23,7 @@ function compareMatrices(query, page) {
   
   
   for(i=0; i<query.length; i++) {//for all words in the query
+    //TBD: remember that the percentage of words known is part of the array!!
     //calculate the magnitude of the current word
     magQuery = query[i].reduce((acc, n) => acc + (n*n), 0);
     magQuery = Math.sqrt(magQuery);
@@ -52,10 +53,10 @@ function compareMatrices(query, page) {
       break;
     }
     if(similarity[i]>avgSimilarity) { //increase the similarity if a word appears more often than average
-      avgSimilarity+=similarity[i]; //NEEDS TO BE ALTERED --> COULD PUT IT OVER 1
+      avgSimilarity+=similarity[i]; //TBD: NEEDS TO BE ALTERED --> COULD PUT IT OVER 1
     }
   }
-  console.log(avgSimilarity);
+  return avgSimilarity; //TBD: needs to calculate smth with the percentages of words known
 
 }
 
