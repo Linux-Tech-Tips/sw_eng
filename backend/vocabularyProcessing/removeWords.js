@@ -1,6 +1,6 @@
 //script that processes the original file of word vectors into a filtered file in JSON formatting
 
-module.export = {uploadVocab};
+module.exports = {uploadVocab};
 
 async function uploadVocab() {
 
@@ -20,16 +20,13 @@ for(let i=0; i<glove.length; i++) { //for all entries in the original array
   if(glove[i].substring(0, glove[i].indexOf(' ')).match(/^[a-z]+$/g)) { //if the word is entirely english characters 
     tempArray[0] = glove[i].substring(0, glove[i].indexOf(' '));
     tempArray = sw.removeStopwords(tempArray); //call removeStopwords on it
-  }
-  if(tempArray.length>0 && tempArray[0].length>2 && tempArray[0].substring(0,1)!=tempArray[0].substring(1,2)) {  //if the word exists, is longer than 2 characters and the first two characters aren't identical--> add it to the new array
+  if(tempArray.length>0 && tempArray[0].length>2 && tempArray[0].substring(0,1)!=tempArray[0].substring(1,2) && gloveArray[glove[i].substring(0, glove[i].indexOf(' '))]==undefined) {  //if the word exists, is longer than 2 characters and the first two characters aren't identical--> add it to the new array
       //await db.dbSetWord(glove[i].substring(0, glove[i].indexOf(' ')), glove[i].substring(glove[i].indexOf(' ') +1).split(' ')); //add the word to the database
       gloveArray[glove[i].substring(0, glove[i].indexOf(' '))] = glove[i].substring(glove[i].indexOf(' ') +1).split(' '); //set the vector as the entry indexed to the word
       
     }
   }
-
-
+} 
 fs.writeFileSync('glove.txt', JSON.stringify(gloveArray));
 }
-
 uploadVocab();
