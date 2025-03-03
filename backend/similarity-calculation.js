@@ -1,5 +1,6 @@
 module.exports = { calculate_similarity_score };
 
+
 // This is just the implementation of the jaro similarity function.
 function jaro(query, word) {
     if (query == word) {
@@ -86,7 +87,7 @@ function calculate_similarity_score(query, page) {
 	var query_length = query.length;
 
 	for ( word of page ) {
-		for ( term of query_terms ) {
+		for ( term of query ) {
             // comparing each term of the query with each word in the page (efficiency is to be improved)
             // if the jaro similarity of the term with the currently checked word is greater than the previously stored value, update the hashmap.
 			var prev_value = query_map.get(term);
