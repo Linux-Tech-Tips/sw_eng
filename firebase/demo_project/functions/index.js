@@ -11,6 +11,7 @@ const {onRequest} = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
 
 const dbUtil = require("./dbUtil.js");
+const engine = require("./engine.js");
 const vocab = require("./uploadVocab.js");
 
 exports.helloWorld = onRequest((request, response) => {
@@ -18,9 +19,22 @@ exports.helloWorld = onRequest((request, response) => {
   response.send("Hello from Firebase!");
 });
 
-exports.uploadVocab = onRequest({timeoutSeconds: 3600, memory: "2GiB"}, async (request, response) => {
+/*exports.uploadVocab = onRequest({timeoutSeconds: 3600, memory: "2GiB"}, async (request, response) => {
   await vocab.uploadVocab();
   reponse.send("<pre> Added vocabulary! </pre>");
+});*/
+
+exports.search = onRequest(async (request, response) => {
+    /* Get user query */
+    if(!request.query.query) {
+	response.send("Please enter query (using the URL parameter query=query_text)");
+	return;
+    }
+    let query = request.query.query;
+    console.log("Searching with query: " + query);
+
+    let result = await engine.search(query);
+    response.send("<pre>Search Results: \n" + JSON.stringify(result) + "</pre>");
 });
 
 exports.addDemoPage = onRequest(async (request, response) => {
