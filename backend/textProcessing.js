@@ -3,7 +3,7 @@
 module.exports = { htmlToText, stripText };
 
 const parser = require('node-html-parser');
-const entities = require('html-entities'); {decode} from 'html-entities';
+const entities = require('html-entities'); 
 const sw = require('stopword')
 
 //function that takes a string html page and returns an array
@@ -12,7 +12,7 @@ const sw = require('stopword')
 
 function htmlToText(input) {
   const returnValues = []; //array for output, [0] = title, [1] = body text
-  let root = parser.parse(input);l
+  let root = parser.parse(input);
   
 
   //set the title (minus tags) as the first array element
@@ -39,15 +39,15 @@ function htmlToText(input) {
 }
 
 
-//function that takes a string and returns a string without punctuation, stopwords, whitespace, and all in lowercas
+//function that takes a string and returns a string without punctuation, stopwords, whitespace, and all in lowercase
 function stripText(input) {
   let text = input.toLowerCase();
 
   //remove punctuation
-  text = text.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '')
-
+  text = text.replace(/[!""#$%&''()*+,-./:;<=>?@[\]^_``{|}~]/g, '');
+  text = text.replace(/[0-9]/g, '');
   //remove whitespace
-  text = text.replace(/[\t\n\r]/g,'');
+  text = text.replace(/[\b\t\n]/g,'');
 
   //remove stopwords
   let textArray = text.split(' ');
