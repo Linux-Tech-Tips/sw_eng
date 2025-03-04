@@ -2,22 +2,25 @@
 
 module.exports = { stringToMatrix, meaningSearch };
 
+const db = require('./dbUtil.js');
 //function to turn a given (preprocessed) string into an array of vectors
-//the first entry in the array is a percentage of how many words were found in the lookup table TBD: in database structure this would actually just be written as a separate thing
+//the first entry in the array is a percentage of how many words were found in the lookup table
 
-function stringToMatrix(text) {
+async function stringToMatrix(text) {
   
   //split the given text into an array, create empty array for vectors
   let textArray = text.split(' ');
   let vectorisedText = {};
   vectorisedText[0] = 0; //counter for how many words were found, will be converted to a percentage
   let key = 0; //key for making the matrix of vectors an object
+  let currVec = []; //vector for the current word
 
   //loop through the array, if the word is findable in the vector table --> add it and increment the counter of how many words were found
   for(let i=1; i<=textArray.length; i++) {
-    if(vectorArray[textArray[i]]!=undefined){ //TBD: call the database to check if the word is defined, this shouldn't be done with 'vectorArray'
+    await currVec = db.getWord(textArray[i]);
+    if(currVec!=undefined){ 
       key = i;
-      vectorisedText[key] = vectorArray[textArray[i]]; //TBD: fetch the vector from the databse
+      vectorisedText[key]= curVec;
       vectorisedText[0]++;
     }
 
@@ -27,7 +30,9 @@ function stringToMatrix(text) {
   return vectorisedText;
 }
 
-//function that takes a matrix query and a JSON object page
+//QUESTION: is vectorisedText now also a JSON object due to how the word vectors are stored in the database??? 
+
+//function that takes a matrix query and a JSON object page THIS MIGHT NOT BE TRUE, MIGHT BOTH BE OBJECTS (shouldn't change the functionality tho)
 //the first entry in both the query matrix and the page object are a float representation of the perventage of words known
 //returns an array, first value is the confidence value (based on words known) and second is the similarity score
 
