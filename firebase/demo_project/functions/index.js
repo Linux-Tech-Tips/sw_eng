@@ -19,10 +19,11 @@ exports.helloWorld = onRequest((request, response) => {
   response.send("Hello from Firebase!");
 });
 
-/*exports.uploadVocab = onRequest({timeoutSeconds: 3600, memory: "2GiB"}, async (request, response) => {
+/* Upload the word embeddings vocabulary to the database */
+exports.uploadVocab = onRequest({timeoutSeconds: 3600, memory: "2GiB"}, async (request, response) => {
   await vocab.uploadVocab();
-  reponse.send("<pre> Added vocabulary! </pre>");
-});*/
+  response.send("<pre> Added vocabulary! </pre>");
+});
 
 exports.search = onRequest(async (request, response) => {
     /* Get user query */
