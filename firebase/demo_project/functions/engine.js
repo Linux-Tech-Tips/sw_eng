@@ -6,6 +6,7 @@ const dbUtil = require("./dbUtil.js");
 
 const metadata = require("./metadata.js");
 const content = require("./similarity-calculation.js");
+const meanings = require("./meanings.js");
 
 /** Takes in a search query as an unprocessed string, returns sorted array of JavaScript objects containing page information, from highest to lowest score.
  * Page info object:
@@ -29,7 +30,7 @@ async function search(query) {
 
     pages.forEach(doc => {
 	let pageID = doc.data().pageID;
-	let score = getScore(metadata[pageID], 0.5, meaning[pageID][0], meaning[pageID][1], content[pageID]);
+	let score = getScore(metadata[pageID], 0.5, meaning[pageID][1], meaning[pageID][0], content[pageID]);
 	result.push({
 	    pageTitle: doc.data().pageTitle,
 	    pageUrl: doc.id,
@@ -69,11 +70,12 @@ async function meaningScore(pQuery) {
     let pageData = await dbUtil.dbGetCollection("pageVec");
     let result = [];
 
+    let matrixQuery = await meanings.stringToMatrix(pQuery);
+
     pageData.forEach(doc => {
 	let pageID = doc.id;
-	// TODO FUNCTION THAT RETURNS SCORE, GIVEN QUERY AND PAGE DATA FROM DATABASE
-	//result[pageID] = ...
-	result[pageID] = [0.5, 0.5]; // FIXME PLACEHOLDER
+	//console.log("Meaning Score: " + matrixQuery + " (" + matrixQuery.length + ") --- " + doc.data().matrix + "(" + doc.data().matrix.length + ")");
+	result[pageID] = meanings.meaningSearch(Object.values(matrixQuery), Object.values(doc.data().matrix));
     });
     return result;
 }
