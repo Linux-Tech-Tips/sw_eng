@@ -14,19 +14,14 @@ async function stringToMatrix(text) {
   vectorisedText[0] = 0; //counter for how many words were found, will be converted to a percentage
   let key = 0; //key for making the matrix of vectors an object
   let currVec = []; //vector for the current word
-  let test = await db.dbGetWord("linux");
-  console.log(test);
-  test = await db.dbGetWord(textArray[0]);
-  console.log(test);
-
 
   //loop through the array, if the word is findable in the vector table --> add it and increment the counter of how many words were found
-  for(let i=0; i<=textArray.length; i++) {
+  for(let i=0; i<textArray.length; i++) {
     console.log(textArray[i]);
     currVec = await db.dbGetWord(textArray[i]);
-    if(currVec!=undefined){ 
+    if(currVec.data()){ 
       key = i+1;
-      vectorisedText[key]= currVec;
+      vectorisedText[key]= currVec.data().vec;
       vectorisedText[0]++;
     }
 
