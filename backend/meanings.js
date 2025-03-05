@@ -16,7 +16,7 @@ async function stringToMatrix(text) {
   let currVec = []; //vector for the current word
 
   //loop through the array, if the word is findable in the vector table --> add it and increment the counter of how many words were found
-  for(let i=1; i<=textArray.length; i++) {
+  for(let i=0; i<textArray.length; i++) {
     await currVec = db.getWord(textArray[i]);
     if(currVec!=undefined){ 
       key = i;
@@ -30,10 +30,8 @@ async function stringToMatrix(text) {
   return vectorisedText;
 }
 
-//QUESTION: is vectorisedText now also a JSON object due to how the word vectors are stored in the database??? 
-
-//function that takes a matrix query and a JSON object page THIS MIGHT NOT BE TRUE, MIGHT BOTH BE OBJECTS (shouldn't change the functionality tho)
-//the first entry in both the query matrix and the page object are a float representation of the perventage of words known
+//function that takes two JSON objects (associative arrays) representing the query and page
+//the first entry in both are a float representation of the perventage of words known
 //returns an array, first value is the confidence value (based on words known) and second is the similarity score
 
 function meaningSearch(query, page) {
