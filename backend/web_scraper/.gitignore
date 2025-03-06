@@ -10,3 +10,4 @@ test.txt
 *.json
 start-copy.js
 similarity-calculation-test.js
+crawler-test.js
