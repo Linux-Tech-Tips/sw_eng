@@ -138,13 +138,6 @@ async function isValidUrl(url) {
     }
 }
 
-async function extractAlllinks(url, domain, limit) {
-    if (limit == 0) {
-        return;
-    }
-    //
-}
-
 // A dfs implementation using a stack to store both the pagedata and the links associated with the page data.
 
 
