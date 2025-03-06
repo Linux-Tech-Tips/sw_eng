@@ -16,7 +16,6 @@ const delay = (tm) => {setTimeout(() => {}, tm * 1000)};
 
 // need to respect the nofollow tag in the meta data file.
 
-// Place a mock data response when testing this for the web crawler.
 async function getPageData(url) {
     //const instance = axios.create();
     // will wait for 3 seconds before timing out.
@@ -80,9 +79,13 @@ function websiteFormatter(url, webpage) {
 // (only the "*" matters for me) in this scenario as this is a custom crawler.
 // The second section represents any extensions, which in this case would mean the sitemaps present.
 async function parseRobotsTxt(url) {
+    try {
     let input = await getPageData(websiteFormatter(url, 'robots.txt'));
     let output = await parse(input);
     return output;
+    } catch (error) {
+        return null;
+    }
 }
 
 // a function that extracts the important parts from the robots object
@@ -90,6 +93,11 @@ async function parseRobotsTxt(url) {
 async function extractRules(robots) {
     let result = [];
     let data = await robots;
+
+    if (data == null) {
+        return [];
+    }
+
     for (let group of (data['groups'])) {
         // because this is a custom crawler for a custom search engine, we will have to use the wildcard agent rules.
         if (group["agents"] == "*") {
@@ -106,12 +114,15 @@ async function extractRules(robots) {
 async function extractRuleCategories(robots) {
     let rule_types = [];
     let rules = await extractRules(robots);
+    if (rules.length == 0) {
+        return [];
+    }
     for (let rule of rules) {
         if ( !rule_types.find((type) => type == rule.rule) ) {
             rule_types.push(rule.rule);
         }
     }
-    console.log(rule_types);
+    //console.log(rule_types);
     return rule_types;
 }
 
@@ -119,6 +130,9 @@ async function extractRuleCategories(robots) {
 // a function that will return the filtered rules.
 async function filterRules(filter, robots) {
     let rules = await extractRules(robots);
+    if (rules.length == 0) {
+        return [];
+    }
     let filtered_rules = rules.filter((rule) => rule.rule == filter).map((link) => link.path);
     return filtered_rules;
 }
@@ -170,7 +184,7 @@ async function extractAllLinks(url, domain, limit) {
         }
         // if the current url is a non empty relative path:
         // format it to be an absolute path and check if it's a valid url.
-        if (currentUrl.startsWith("/") && currentUrl.trim() != "") {
+        if (!currentUrl.startsWith("http") && currentUrl.trim() != "") {
       //      console.log(currentUrl);
             currentUrl = currentUrl.substring(1, currentUrl.length);
             currentUrl = websiteFormatter(url, currentUrl);
@@ -196,7 +210,7 @@ async function extractAllLinks(url, domain, limit) {
             continue;
         }
         // the same website with a different http protocol marks this as true.... interesting.
-        console.log(currentUrl, visitedUrls[currentUrl]);
+        //console.log(currentUrl, visitedUrls[currentUrl]);
 
         if(visitedUrls[currentUrl] != true) {
             // console.log(currentUrl);            
@@ -214,7 +228,6 @@ async function extractAllLinks(url, domain, limit) {
 
         for (let link of links) {
             if (visitedUrls[link] == undefined) {
-                //console.log(link);
                 stack.push(link);
                 visitedUrls[link] = true;
             }
@@ -222,7 +235,7 @@ async function extractAllLinks(url, domain, limit) {
         limit--;
     }
     //linkStorage = new Set(linkStorage);
-    //linkStorage.forEach((link) => console.log(link));
+    linkStorage.forEach((link) => console.log(link));
     //console.log(linkStorage.length);
     /*
     for (let index = 0; index < linkStorage.length; index++) {
@@ -231,6 +244,5 @@ async function extractAllLinks(url, domain, limit) {
         
     }
 */
-    //console.log(linkStorage);
     return linkStorage;
 }
