@@ -13,6 +13,7 @@ const logger = require("firebase-functions/logger");
 const dbUtil = require("./dbUtil.js");
 const engine = require("./engine.js");
 const vocab = require("./uploadVocab.js");
+const add = require("./addPage.js");
 
 exports.helloWorld = onRequest((request, response) => {
   logger.info("Hello logs!", {structuredData: true});
@@ -36,6 +37,11 @@ exports.search = onRequest(async (request, response) => {
 
     let result = await engine.search(query);
     response.send("<pre>Search Results: \n" + JSON.stringify(result) + "</pre>");
+});
+
+exports.addPage = onRequest({timeoutSeconds: 3600}, async (request, response) => {
+  //test call of the addPage function with the linux man pages
+  add.addPage("https://man7.org/linux/man-pages/dir_section_1.html", "man7.org");
 });
 
 exports.addDemoPage = onRequest(async (request, response) => {
