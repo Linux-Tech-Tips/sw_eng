@@ -4,14 +4,22 @@ const dbUtil = require("./dbUtil.js");
 const textProcessing = require("./textProcessing.js");
 const metadata = require("./metadata.js");
 const meanings = require("./meanings.js");
+const crawler = require("./crawler.js");
 
 /** Takes in a string baseUrl and a domain for a website, finds any viable subpages, processes them and adds the processed data into the database */
-async function addPage(baseUrl) {
+async function addPage(baseUrl, domain) {
 
-    //let pages = ...
-    // TODO Populate this once function to get list of HTML content found
-    // -> Assuming 'pages' being an array of strings containing HTML data
+    /* Fetch array of urls and create array of page strings */
+    let limit = 5; //limit on how many links the crawler extracts
+    let urls = [];
     let pages = [];
+    let urls = crawler.extractAllLinks(baseUrl, domain, limit);
+    console.log(urls);
+
+    for(i in urls) {
+      pages[i] = (crawler.getPageData(urls[i]));
+    }
+    console.log(pages);
 
     /* Preprocess pages, strip html and then save to plaintext */
     for(idx in pages) {
@@ -25,19 +33,19 @@ async function addPage(baseUrl) {
     let pageID = await dbUtil.dbGetLastID();
 
     /* Go through preprocessed pages, save into database */
-    for(page of pages) {
+    for(i in pages) {
 	/* Increment ID of last page added */
 	++pageID;
 
 	/* Add page to database */
-	await dbUtil.dbSetPage(page /* TODO figure out URL */, baseUrl, new Date(), page[0], pageID);
+	await dbUtil.dbSetPage(urls[i], baseUrl, new Date(), pages[i][0], pageID);
 
 	/* Process metadata and add to database */
-	let termFreq = await metadata.metadataProcess([page[1], page[2]]);
+	let termFreq = await metadata.metadataProcess([pages[i][1], pages[i][2]]);
 	await dbUtil.dbSetPageMetadata(pageID.toString(), termFreq);
 
 	/* Add the page ID to the documents for each word where the termFreq is above a threshold x */
-	let threshold = 0.5; //placeholder value
+	let threshold = 0.1; //placeholder value
 	for(key in termFreq) {
 	  if(termFreq>threshold){	
             let currList = await db.dbUtilGetDocument("wordPages", key);
@@ -50,20 +58,13 @@ async function addPage(baseUrl) {
 	  await db.dbUtilSetDocument("wordPages", key, currList);
 	}	
 	/* Process meaning and add to database */
-	let matrix = meanings.stringToMatrix(page[2]);
+	let matrix = meanings.stringToMatrix(pages[i][2]);
 	await dbUtil.dbSetPageVec(pageID.toString(), matrix, matrix[0]);
 
 	/* Add content to database */
-	await dbUtil.dbSetPageContent(pageID.toString(), page[2]);
+	await dbUtil.dbSetPageContent(pageID.toString(), pages[i][2]);
+        }
     }
-
     await dbUtil.dbSetLastID(pageID);
-
-    // TODO Based on how the Crawler works, this will differ - either JS array of HTML pages, or list of crawlable sites for which HTML will be obtained independently
-    // Steps:
-    //  -> For each Crawled page (HTML obtained), do:
-    //    -> call preprocessor to turn HTML into plaintext and then plaintext into preprocessed
-    //    -> throw the plaintext into each of the three preprocessors, function which will return a JS object
-    //    -> save JS object from each preprocessor into the appropriate database
-    //    -> or, alternatively, let each preprocessor do the saving themselves
 }
+   
