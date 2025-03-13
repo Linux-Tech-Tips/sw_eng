@@ -5,7 +5,7 @@ const textProcessing = require("./textProcessing.js");
 const metadata = require("./metadata.js");
 const meanings = require("./meanings.js");
 
-/** Takes in a string baseUrl to a website, finds any viable subpages, processes them and adds the processed data into the database */
+/** Takes in a string baseUrl and a domain for a website, finds any viable subpages, processes them and adds the processed data into the database */
 async function addPage(baseUrl) {
 
     //let pages = ...
@@ -40,14 +40,14 @@ async function addPage(baseUrl) {
 	let threshold = 0.5; //placeholder value
 	for(key in termFreq) {
 	  if(termFreq>threshold){	
-            let currList = await db.dbUtilGetDocument(wordPages, key);
+            let currList = await db.dbUtilGetDocument("wordPages", key);
 	    if(currList==undefined){
 	      currList = [];
 	    }
 	    if(!currList.includes(pageID)){
 	      currList.push(pageID);
           }
-	  await db.dbUtilSetDocument(wordPages, key, currList);
+	  await db.dbUtilSetDocument("wordPages", key, currList);
 	}	
 	/* Process meaning and add to database */
 	let matrix = meanings.stringToMatrix(page[2]);
