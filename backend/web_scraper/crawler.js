@@ -180,6 +180,7 @@ async function extractAllLinks(url, domain, limit) {
         // mark it as visited and continue.
         if (disallowed_links.includes(currentUrl)) {
             visitedUrls[currentUrl] = true;
+            limit--;
             continue;
         }
         // if the current url is a non empty relative path:
@@ -193,24 +194,26 @@ async function extractAllLinks(url, domain, limit) {
             }
             else {
                 visitedUrls[currentUrl] = true;
+                limit--;
                 continue;
             }
         }
         // this is to be redone hopefully.
         try {
             currentDomain = new URL(currentUrl).hostname;
-        //console.log(currentDomain);
         if (currentDomain != domain) {
             visitedUrls[currentUrl] = true;
+            limit--;
             continue;
         }
-   
+
         } catch (error) {
             visitedUrls[currentUrl] = true;
+            limit--;
             continue;
         }
         // the same website with a different http protocol marks this as true.... interesting.
-        //console.log(currentUrl, visitedUrls[currentUrl]);
+        // console.log(currentUrl, visitedUrls[currentUrl]);
 
         if(visitedUrls[currentUrl] != true) {
             // console.log(currentUrl);            
@@ -218,6 +221,7 @@ async function extractAllLinks(url, domain, limit) {
             // if the pageData is null, just mark the current url as visited and continue.
             if (pageData == null) {
                 visitedUrls[currentUrl] = true;
+                limit--;
                 continue;
             }
             links = await extractLinks(pageData);
@@ -235,7 +239,7 @@ async function extractAllLinks(url, domain, limit) {
         limit--;
     }
     //linkStorage = new Set(linkStorage);
-    linkStorage.forEach((link) => console.log(link));
+    //linkStorage.forEach((link) => console.log(link));
     //console.log(linkStorage.length);
     /*
     for (let index = 0; index < linkStorage.length; index++) {
