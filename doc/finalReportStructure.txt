@@ -1,50 +1,72 @@
 Compilation of final report structure based on the examples Enda uploaded :D
 
 Table of Contents
-- with page numbers and subsections pretty please
+  - with page numbers and subsections pretty please
 Introduction
-- how did we get/decide on this idea for the project?
-- why do we think it's cool?
-- link to our website
-Resources used
-- e.g. Firestore, if we used any APIs, discord, node modules 
+  - what is the project?? --> search engine for technical documentation
+  - how did we get/decide on this idea for the project?
+  - why do we think it's cool?
+  - we wanted something novel
+  - most search engines are kinda shit for technical documentation (e.g. man pages)
+  - --> we do smth fun that's geared towards that
+  - link to our website
 Project Description/Aims
-- what is the TDS engine?
-- what was it supposed to do?
+  - what is the TDS engine?
+  - what was it supposed to do?
+  - the TDS Engine (Technical Documents Search Engine) is specially made for technical documents
+  - it consists of 3 separate search functions added together: metadata, meanings, literal text
+  - let user make account and add pages
+  - let user control how much influence each section has (???)
 Project Planning
-- how did we go about planning it?
-- e.g. requirements
-- agile
+  - how did we go about planning it?
+  - high level requirements to give us structure (reference requirements doc here)
+  - planned structure lead to very modular project --> good for splitting up work
+  - agile --> work in sprints of variable length
+Resources used
+  - e.g. Firestore, Stanford GloVe model, if we used any APIs, discord, node modules
 Teamwork & Communication
-- how did we talk to each other?
-- github kanban, discord, regular standups
+  - how did we talk to each other?
+  - github kanban, discord, regular standups
+  - work was pretty modular, we talked often and asked questions where necessary
 Role Distribution
-- who did what, brief description
+  - who did what, brief description
+  - Martin: project lead, scrum master, lead the meetings, set up github, guy we all asked questions, metadata search, database, engine
+  - Lilian: front end (insert longer description here)
+  - Ethan: literal text search, web crawler
+  - Cedar: text processing, meanings search
 Functionality Introduction
-- what features does it have?
-- metadata search, meanings search, literal text search, adding pages, text processing, web crawler, what control does the user have (i.e. can they change the weighting of different parts?), user account creation + authentication
+  - what features does it have?
+  - metadata search, meanings search, literal text search, adding pages, text processing, web crawler, what control does the user have (i.e. can they change the weighting of different parts?), user account creation + authentication
 The Database Structure
-- how is the databased structured and how does this tie into the project structure
+  - how is the databased structured and how does this tie into the project structure?
+  - collections which have documents which have java objects
+  - insert database diagram
+  - words collection for vectors
+  - different collections for preprocessed page data for each section
+  - pageWords for indexing pages by word --> explain this whole thing
 Error Handling
-- how do we deal with errors? 
+  - how do we deal with errors? 
 Refactoring
-- I'm gonna be so fr I do not understand what this means but one of the reports had a section on it
+  - I'm gonna be so fr I do not understand what this means but one of the reports had a section on it
 Security
-- do we have any security in place?? what if user inputs evil things?
+  - do we have any security in place?? what if user inputs evil things?
 Project Screenshots + Walkthrough
-- demonstrate the project running
+  - demonstrate the project running
 Testing Methods and Results
-- how did we test it?
-- any automated tests? postman?
+  - how did we test it?
+  - any automated tests? postman?
+  - maybe put a bit abt optimisation here??
 Difficulties Encountered
-- what problems did we have?
-- word embeddings require so such many storage and cpu
-- crawler big difficult
-- balancing the project with other stuff
+  - what problems did we have?
+  - word embeddings require so such many storage and cpu
+  - crawler big difficult
+  - balancing the project with other stuff
 Future of the Project
-- are we going to try to continue working on it?
+  - are we going to try to continue working on it?
+  - if ye how? what would we add?
 Conclusion
-- what we would do differently if we did it again
-- key takeaways, what did we learn
+  - what we would do differently if we did it again
+  - key takeaways, what did we learn
 Appendix
-- gitHub Link
+  - gitHub Link
+  - link to GloVe stuffs
