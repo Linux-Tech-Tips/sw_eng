@@ -170,22 +170,17 @@ async function extractAllLinks(url, domain, limit) {
     while(stack.length > 0 && limit > -1) {
         // get the topmost url from the stack.
         currentUrl = stack.pop();
-        //console.log(currentUrl);
-        // toplevel check to see whether or not to go through the current url.
-        // this doesn't work apparently.
-        //if (visitedUrls[currentUrl] === true) {
-          //  continue;
-        //}
+
         // if the link is included in the disallowed rules section,
         // mark it as visited and continue.
         if (disallowed_links.includes(currentUrl)) {
             visitedUrls[currentUrl] = true;
+            limit--;
             continue;
         }
         // if the current url is a non empty relative path:
         // format it to be an absolute path and check if it's a valid url.
         if (!currentUrl.startsWith("http") && currentUrl.trim() != "") {
-      //      console.log(currentUrl);
             currentUrl = currentUrl.substring(1, currentUrl.length);
             currentUrl = websiteFormatter(url, currentUrl);
             if (isValidUrl(currentUrl)) {
@@ -193,36 +188,36 @@ async function extractAllLinks(url, domain, limit) {
             }
             else {
                 visitedUrls[currentUrl] = true;
+                limit--;
                 continue;
             }
         }
         // this is to be redone hopefully.
         try {
             currentDomain = new URL(currentUrl).hostname;
-        //console.log(currentDomain);
-        if (currentDomain != domain) {
-            visitedUrls[currentUrl] = true;
-            continue;
+        
+            if (currentDomain != domain) {
+                visitedUrls[currentUrl] = true;
+                limit--;
+                continue;
         }
-   
+
         } catch (error) {
             visitedUrls[currentUrl] = true;
+            limit--;
             continue;
         }
         // the same website with a different http protocol marks this as true.... interesting.
-        //console.log(currentUrl, visitedUrls[currentUrl]);
 
         if(visitedUrls[currentUrl] != true) {
-            // console.log(currentUrl);            
             let pageData = await getPageData(currentUrl);
             // if the pageData is null, just mark the current url as visited and continue.
             if (pageData == null) {
                 visitedUrls[currentUrl] = true;
+                limit--;
                 continue;
             }
             links = await extractLinks(pageData);
-            //linkStorage.push([currentUrl, pageData]);
-            //visitedUrls[currentUrl] = true;
         }
 
 
@@ -234,15 +229,6 @@ async function extractAllLinks(url, domain, limit) {
         }
         limit--;
     }
-    //linkStorage = new Set(linkStorage);
-    linkStorage.forEach((link) => console.log(link));
-    //console.log(linkStorage.length);
-    /*
-    for (let index = 0; index < linkStorage.length; index++) {
-        const element = linkStorage[index];
-        console.log(element);
-        
-    }
-*/
+
     return linkStorage;
 }
