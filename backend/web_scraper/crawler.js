@@ -74,6 +74,16 @@ function websiteFormatter(url, webpage) {
     return url.substring(0, hostname_start + urlObject.hostname.length + 1) + webpage;
 }
 
+function localWebsiteFormatter(url, webpage) {
+    let path_start = webpage.indexOf('/');
+    if (path_start != -1) {
+        return url.substring(0, url.lastIndexOf('/')) + webpage.substring(path_start, webpage.length);
+    }
+    else {
+        return '';
+    }
+}
+
 // so it does work but it's compressed when it's displayed in the terminal.
 // the robots txt file is parsed into 2 sections. the first represents the groups that are being used
 // (only the "*" matters for me) in this scenario as this is a custom crawler.
@@ -187,9 +197,9 @@ async function extractAllLinks(url, domain, limit) {
         // format it to be an absolute path and check if it's a valid url.
         if (!currentUrl.startsWith("http") && currentUrl.trim() != "") {
       //      console.log(currentUrl);
-            currentUrl = currentUrl.substring(1, currentUrl.length);
-            currentUrl = websiteFormatter(url, currentUrl);
-            if (isValidUrl(currentUrl)) {
+            //currentUrl = currentUrl.substring(1, currentUrl.length);
+            currentUrl = localWebsiteFormatter(url, currentUrl);
+            if (isValidUrl(currentUrl) && currentUrl != '') {
                 linkStorage.push(currentUrl);
             }
             else {
@@ -225,6 +235,7 @@ async function extractAllLinks(url, domain, limit) {
                 continue;
             }
             links = await extractLinks(pageData);
+            //console.log(currentUrl, links);
             //linkStorage.push([currentUrl, pageData]);
             //visitedUrls[currentUrl] = true;
         }
