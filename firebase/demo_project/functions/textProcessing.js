@@ -44,13 +44,15 @@ function stripText(input) {
   let text = input.toLowerCase();
 
   //remove punctuation
-  text = text.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '');
+  text = text.replace(/[!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~]/g, '');
 
   //remove numbers
-  test = text.replace(/[0-9]/g, '');
+  text = text.replace(/[0-9]/g, '');
 
   //remove whitespace
   text = text.replace(/[\t\n\r]/g,'');
+  text = text.replace(/[\s\s]+/g, " ");
+  text = text.trim();
 
   //remove stopwords
   let textArray = text.split(' ');
