@@ -12,7 +12,7 @@ const sw = require('stopword')
 
 function htmlToText(input) {
   const returnValues = []; //array for output, [0] = title, [1] = body text
-  let root = parser.parse(input);l
+  let root = parser.parse(input);
   
 
   //set the title (minus tags) as the first array element
@@ -44,7 +44,10 @@ function stripText(input) {
   let text = input.toLowerCase();
 
   //remove punctuation
-  text = text.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '')
+  text = text.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '');
+
+  //remove numbers
+  test = text.replace(/[0-9]/g, '');
 
   //remove whitespace
   text = text.replace(/[\t\n\r]/g,'');

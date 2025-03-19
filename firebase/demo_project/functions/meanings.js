@@ -17,7 +17,6 @@ async function stringToMatrix(text) {
 
   //loop through the array, if the word is findable in the vector table --> add it and increment the counter of how many words were found
   for(let i=0; i<textArray.length; i++) {
-    console.log(textArray[i]);
     currVec = await db.dbGetWord(textArray[i]);
     if(currVec.data()){ 
       key = i+1;
