@@ -10,7 +10,7 @@ Introduction -> CEDAR
   - most search engines are kinda shit for technical documentation (e.g. man pages)
   - --> we do smth fun that's geared towards that
   - link to our website
-Project Description/Aims -> CEDAR
+Project Description/Aims -> CEDAR, MARTIN
   - what is the TDS engine?
   - what was it supposed to do?
   - the TDS Engine (Technical Documents Search Engine) is specially made for technical documents
@@ -24,7 +24,7 @@ Project Planning -> MARTIN
   - agile --> work in sprints of variable length
 Resources used -> EVERYONE, CEDAR COMPILE
   - e.g. Firestore, Stanford GloVe model, if we used any APIs, discord, node modules
-Teamwork & Communication -> ETHAN
+Teamwork & Communication -> ETHAN, MARTIN
   - how did we talk to each other?
   - github kanban, discord, regular standups
   - work was pretty modular, we talked often and asked questions where necessary
