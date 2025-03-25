@@ -38,7 +38,7 @@ body {
 }
 
 .nav-link.add-page {
-    right: 260px; /* Position "Add Page" further to the right */
+    right: 260px;
 }
 
 .nav-link.account {
@@ -64,7 +64,7 @@ body {
 }
 
 .content-text {
-    font-size: 50px; /* Adjust as needed */
+    font-size: 50px; /* Keep at 50px PLS */
     line-height: 0.6;
     white-space: pre-line;
 }
