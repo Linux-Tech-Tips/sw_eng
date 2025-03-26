@@ -43,10 +43,12 @@ async function addPage(baseUrl, domain) {
 	
       /* Add page to database */
       await db.dbSetPage(encodeURIComponent(urls[i]), baseUrl, new Date(), pages[i][0], pageID);
+      console.log("Added page to db: " + encodeURIComponent(urls[i]) + ", " + baseUrl);
 	
       /* Process metadata and add to database */
       let termFreq = await metadata.metadataProcess([pages[i][1], pages[i][2]]);
       await db.dbSetPageMetadata(pageID.toString(), termFreq);
+      console.log("Added Page Metadata");
 
 	/* Add the page ID to the documents for each word where the termFreq is above a threshold x */
 	let threshold = 0.01; //placeholder value
@@ -67,11 +69,13 @@ async function addPage(baseUrl, domain) {
 	  
 	    await db.dbSetDocument("wordPages", key, currList);
 	  }
-	}	
+	}
+  console.log("Added keys to wordPages");
 	
 	/* Process meaning and add to database */
 	let matrix = await meanings.stringToMatrix(pages[i][2]);
 	await db.dbSetPageVec(pageID.toString(), matrix, matrix[0]);
+  console.log("Added Page Vector to Database");
 	
 	/* Add content to database */
 	await db.dbSetPageContent(pageID.toString(), pages[i][2]);
