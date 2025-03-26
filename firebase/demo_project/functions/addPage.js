@@ -77,6 +77,6 @@ async function addPage(baseUrl, domain) {
 	await db.dbSetPageContent(pageID.toString(), pages[i][2]);
        	console.log("Page " + pageID + " content added: " + pages[i][2]);
     }
-    await db.dbSetLastID(pageID.toString());
+    await db.dbSetLastID(pageID);
 }
    
