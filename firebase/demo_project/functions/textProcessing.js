@@ -44,7 +44,7 @@ function stripText(input) {
   let text = input.toLowerCase();
 
   //remove punctuation
-  text = text.replace(/^[\w 0-9]/g, '');
+  text = text.replace(/[^\w 0-9]/g, '');
 
   //remove whitespace
   text = text.replace(/[\t\n\r]/g,'');
