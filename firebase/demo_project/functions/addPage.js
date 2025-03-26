@@ -16,10 +16,10 @@ async function addPage(baseUrl, domain) {
     let pages = [];
     urls = await crawler.extractAllLinks(baseUrl, domain, limit);
 	/* A few print statements for the crawler. */
-	//console.log("The number of links extracted: "  + urls.length);
-	//console.log("The links extracted: " + urls);
+	console.log("The number of links extracted: "  + urls.length);
+	console.log("The links extracted: " + urls);
     
-    for(let i  = 0; i <  urls.length; i++) {
+    for(let i  = 0; i <  urls.length; ++i) {
       pages[i] = (await crawler.getPageData(urls[i]));
     }
 
@@ -30,41 +30,43 @@ async function addPage(baseUrl, domain) {
       let strippedTitle = textProcessing.stripText(pageTitle);
       let content = textProcessing.stripText(page[1]);
       pages[idx] = [pageTitle, strippedTitle, content];
+      console.log("Page " + pageTitle + " stripped: " + strippedTitle + ", " + content);
     }
+    console.log("Pages stripped");
 
     let pageID = await db.dbGetLastID();
 
     /* Go through preprocessed pages, save into database */
-    for(let i = 0; i < pages.length; i++) {
-	/* Increment ID of last page added */
-	++pageID;
+    for(let i = 0; i < pages.length; ++i) {
+      /* Increment ID of last page added */
+      ++pageID;
 	
-	/* Add page to database */
-	await db.dbSetPage(encodeURIComponent(urls[i]), baseUrl, new Date(), pages[i][0], pageID);
+      /* Add page to database */
+      await db.dbSetPage(encodeURIComponent(urls[i]), baseUrl, new Date(), pages[i][0], pageID);
 	
-	/* Process metadata and add to database */
-	let termFreq = await metadata.metadataProcess([pages[i][1], pages[i][2]]);
-	await db.dbSetPageMetadata(pageID.toString(), termFreq);
+      /* Process metadata and add to database */
+      let termFreq = await metadata.metadataProcess([pages[i][1], pages[i][2]]);
+      await db.dbSetPageMetadata(pageID.toString(), termFreq);
 
-	/* Add the page ID to the documents for each word where the termFreq is above a threshold x */
-	let threshold = 0.01; //placeholder value
-	for(key in termFreq) {	
-	  if(termFreq[key]>threshold){	
-	    let currList = await db.dbGetDocument("wordPages", key);
-	    currList = currList.data();
-	    if(currList == undefined){
-      	      currList = {};
-	      currList.ids = [];
-	      currList.ids.push(pageID);
-   	    }
+      /* Add the page ID to the documents for each word where the termFreq is above a threshold x */
+      let threshold = 0.01; //placeholder value
+      for(key in termFreq) {	
+        if(termFreq[key]>threshold){	
+          let currList = await db.dbGetDocument("wordPages", key);
+            currList = currList.data();
+            if(currList == undefined){
+              currList = {};
+              currList.ids = [];
+              currList.ids.push(pageID);
+            }
 
-	    else if(!currList.ids.includes(pageID)){
-   	      currList.ids.push(pageID);
-              }
-	  
-	    await db.dbSetDocument("wordPages", key, currList);
-	  }
-	}	
+          else if(!currList.ids.includes(pageID)){
+            currList.ids.push(pageID);
+          }
+  
+          await db.dbSetDocument("wordPages", key, currList);
+          }
+        }	
 	
 	/* Process meaning and add to database */
 	let matrix = await meanings.stringToMatrix(pages[i][2]);
@@ -72,7 +74,7 @@ async function addPage(baseUrl, domain) {
 	
 	/* Add content to database */
 	await db.dbSetPageContent(pageID.toString(), pages[i][2]);
-       	console.log("Page " + pageID + " content added!");
+       	console.log("Page " + pageID + " content added: " + pages[i][2]);
     }
     await db.dbSetLastID(pageID.toString());
 }
