@@ -48,25 +48,26 @@ async function addPage(baseUrl, domain) {
       let termFreq = await metadata.metadataProcess([pages[i][1], pages[i][2]]);
       await db.dbSetPageMetadata(pageID.toString(), termFreq);
 
-      /* Add the page ID to the documents for each word where the termFreq is above a threshold x */
-      let threshold = 0.01; //placeholder value
-      for(key in termFreq) {	
-        if(termFreq[key]>threshold){	
-          let currList = await db.dbGetDocument("wordPages", key);
-            currList = currList.data();
-            if(currList == undefined){
-              currList = {};
-              currList.ids = [];
-              currList.ids.push(pageID);
-            }
+	/* Add the page ID to the documents for each word where the termFreq is above a threshold x */
+	let threshold = 0.01; //placeholder value
+	for(key in termFreq) {	
+	  	if(termFreq[key] > threshold) {	
+	    	let currList = await db.dbGetDocument("wordPages", key);
+	    	currList = currList.data();
+	    	
+			if(currList == undefined){
+      	    	currList = {};
+	      		currList.ids = [];
+	      		currList.ids.push(pageID);
+   	    	}
 
-          else if(!currList.ids.includes(pageID)){
-            currList.ids.push(pageID);
-          }
-  
-          await db.dbSetDocument("wordPages", key, currList);
-          }
-        }	
+	    else if(!currList.ids.includes(pageID)){
+   	      		currList.ids.push(pageID);
+        }
+	  
+	    await db.dbSetDocument("wordPages", key, currList);
+	  }
+	}	
 	
 	/* Process meaning and add to database */
 	let matrix = await meanings.stringToMatrix(pages[i][2]);
