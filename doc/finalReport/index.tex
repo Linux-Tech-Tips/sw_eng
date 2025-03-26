@@ -1,2 +1,51 @@
-compilation of all the things!
-I'm currently not bothered to put all the input statements
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\projectname}{Technical Documentation Search (TDS) Engine}
+
+\setlength\parindent{0pt}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0px}
+
+\fancyhead[L]{\projectname}
+\fancyfoot[R]{\thepage}
+
+\pagenumbering{roman}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{4cm}
+    {\Large \projectname \par}
+    \vspace{2cm}
+    {\Large Final Project Report \par}
+    \vspace{0.5cm}
+    {\Large Version 1.0 \par}
+    \vspace{0.5cm}
+    {\Large \today \par}
+    \vspace{2cm}
+    {\Large Martin Klacer, Lilian Kennedy, Elisabeth Pfeiffer, Ethan Aguocha-Njoroge \par}
+    \vfill
+
+    Prepared for\\
+    CT216--Software Engineering I\par
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+\fancyfoot[R]{Page \thepage}
+
+\input{introduction.tex}
+
+\end{document}

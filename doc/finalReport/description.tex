@@ -1,7 +1,31 @@
-Project Description/Aims -> CEDAR, MARTIN
-  - what is the TDS engine?
-  - what was it supposed to do?
-  - the TDS Engine (Technical Documents Search Engine) is specially made for technical documents
-  - it consists of 3 separate search functions added together: metadata, meanings, literal text
-  - let user make account and add pages
-  - let user control how much influence each section has (???)
+\section{Project Description}
+
+The key differentiating features between the TDS Engine and most commonly used search engines are:
+
+\begin{itemize}
+  \item being optimised to process dense text and technical documentation, which makes it easier for the user to find relevant pages;
+  \item adding only explicitly trusted and relevant pages, thus excluding spam and minimising irrelevant results.
+\end{itemize}
+
+In order to process the raw page data into a form that can be used by the search functions, the following data processing occurs before it is stored in the database:
+\begin{enumerate}
+  \item html tags, script blocks, and the header section are removed from the page, saving the title for further processing;
+  \item all text is set to lower case, stop words and special characters are removed, which results in a plaintext string where words are separated by one space;
+  \item IDK DUDE META DATA PROCESSING
+  \item for the meaings search, each word in the page is replaced by its respective word embedding. 
+
+The search functionality itself is split up into three subsections:
+\begin{enumerate}
+  \item a \textbf{meanings search} based on vectors representing a word's semantic meaning;
+  \item a \textbf{metadata search} based on the page's metadata;
+  \item a \textbf{literal text search} based on word's spellings (this functions as a fuzzy search).
+\end{enumerate}
+which are then combined together to create a final similarity result between a page and a query, which is passed onto the front end. \\
+
+The front end has the following functionalities:
+\begin{enumerate}
+  \item users can create \textit{accounts}, which are password protected;
+  \item users can add pages to the engine's database.
+\end{enumerate}
+
+These functionalities are very modular, which meant we could split up work easily.  
