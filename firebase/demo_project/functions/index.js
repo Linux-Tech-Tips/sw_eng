@@ -14,6 +14,8 @@ const dbUtil = require("./dbUtil.js");
 const engine = require("./engine.js");
 const vocab = require("./uploadVocab.js");
 const add = require("./addPage.js");
+const crawler = require("./crawler.js");
+
 
 exports.helloWorld = onRequest((request, response) => {
   logger.info("Hello logs!", {structuredData: true});
@@ -119,4 +121,21 @@ exports.writeTest = onRequest(async (request, response) => {
     /* Write the query data without the collection and document fields to the database */
     await dbUtil.dbSetDocument(col, doc, request.query);
     response.send("<pre>Written Data: " + JSON.stringify(request.query) + "</pre>");
+});
+
+exports.crawlerTest = onRequest(async (request, response) => {
+    let url = "https://man7.org/linux/man-pages/dir_section_1.html";
+    let limit = 50;
+    let data = await crawler.crawlerTest(url, limit);
+    
+    let urls = data[0];
+    let pages = data[1];
+    console.log(urls);
+    console.log(pages);
+
+    let url_response = urls.join("<br>");
+    let pages_response = pages.join("<br>");
+
+    response.send("<pre> Crawled data: " + url_response + "<br>"+ pages_response + "</pre>");
+
 });

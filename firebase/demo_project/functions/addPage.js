@@ -11,13 +11,13 @@ const crawler = require("./crawler.js");
 /** Takes in a string baseUrl and a domain for a website, finds any viable subpages, processes them and adds the processed data into the database */
 async function addPage(baseUrl, domain) {
     /* Fetch array of urls and create array of page strings */
-    let limit = 2; //limit on how many links the crawler extracts
+    let limit = 50; //limit on how many links the crawler extracts
     let urls = [];
     let pages = [];
     urls = await crawler.extractAllLinks(baseUrl, domain, limit);
 	/* A few print statements for the crawler. */
-	console.log("The number of links extracted: "  + urls.length);
-	console.log("The links extracted: " + urls);
+	//console.log("The number of links extracted: "  + urls.length);
+	//console.log("The links extracted: " + urls);
     
     for(let i  = 0; i <  urls.length; i++) {
       pages[i] = (await crawler.getPageData(urls[i]));
@@ -40,7 +40,7 @@ async function addPage(baseUrl, domain) {
 	++pageID;
 	
 	/* Add page to database */
-	await db.dbSetPage(urls[i], baseUrl, new Date(), pages[i][0], pageID);
+	await db.dbSetPage(encodeURIComponent(urls[i]), baseUrl, new Date(), pages[i][0], pageID);
 	
 	/* Process metadata and add to database */
 	let termFreq = await metadata.metadataProcess([pages[i][1], pages[i][2]]);

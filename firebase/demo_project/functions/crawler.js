@@ -2,7 +2,7 @@ const cheerio = require("cheerio");
 const axios = require("axios");
 const parse = require('robots-txt-parse');
 const url = require('url');
-module.exports = { extractAllLinks, getPageData };
+module.exports = { extractAllLinks, getPageData, crawlerTest };
 
 // A lambda function that is supposed to place the crawler to "sleep" for a short amount of time so that it's not automatically banned.
 const delay = (tm) => {setTimeout(() => {}, tm * 1000)};
@@ -72,6 +72,16 @@ function websiteFormatter(url, webpage) {
     let urlObject = new URL(url);
     let hostname_start = url.indexOf(urlObject.hostname);
     return url.substring(0, hostname_start + urlObject.hostname.length + 1) + webpage;
+}
+
+function localWebsiteFormatter(url, webpage) {
+    let path_start = webpage.indexOf('/');
+    if (path_start != -1) {
+        return url.substring(0, url.lastIndexOf('/')) + webpage.substring(path_start, webpage.length);
+    }
+    else {
+        return '';
+    }
 }
 
 // so it does work but it's compressed when it's displayed in the terminal.
@@ -181,17 +191,18 @@ async function extractAllLinks(url, domain, limit) {
         // if the current url is a non empty relative path:
         // format it to be an absolute path and check if it's a valid url.
         if (!currentUrl.startsWith("http") && currentUrl.trim() != "") {
-            currentUrl = currentUrl.substring(1, currentUrl.length);
-            currentUrl = websiteFormatter(url, currentUrl);
-            if (isValidUrl(currentUrl)) {
-                linkStorage.push(currentUrl);
-            }
-            else {
-                visitedUrls[currentUrl] = true;
-                limit--;
-                continue;
-            }
-        }
+            //      console.log(currentUrl);
+                  //currentUrl = currentUrl.substring(1, currentUrl.length);
+                  currentUrl = localWebsiteFormatter(url, currentUrl);
+                  if (isValidUrl(currentUrl) && currentUrl != '') {
+                      linkStorage.push(currentUrl);
+                  }
+                  else {
+                      visitedUrls[currentUrl] = true;
+                      limit--;
+                      continue;
+                  }
+              }
         // this is to be redone hopefully.
         try {
             currentDomain = new URL(currentUrl).hostname;
@@ -231,4 +242,18 @@ async function extractAllLinks(url, domain, limit) {
     }
 
     return linkStorage;
+}
+
+
+
+async function crawlerTest(url, limit) {
+    domain = new URL(url).hostname;
+    urls = await extractAllLinks(url, domain, limit);
+    pages = []
+
+    for (let i = 0; i < urls.length; i++) {
+        pages[i] = await getPageData(urls[i]);
+    }
+    
+    return [urls, pages];
 }
