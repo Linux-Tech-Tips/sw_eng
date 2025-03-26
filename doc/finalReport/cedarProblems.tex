@@ -1,2 +1,3 @@
 \subsection{Elisabeth Pfeiffer}
-what problems did cedar have
+The largest problem Elisabeth encountered was trying to decide how to implement the word embeddings. One of the original ideas was to have a word embeddings model running inference on the website's server for optimal accuracy. After some work into this avenue it was looking promising,  but further investigation of google cloud pricing made it clear that this would not be possible. \\
+As such, they decided to change track and simply upload a large file of words with their respective vectors into the database which would function as a lookup table. This was also not without issue, as trying to trim the original file of 300 000 word vectors down to an affordable but still useful number proved difficult.
