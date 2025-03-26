@@ -43,7 +43,7 @@ exports.search = onRequest(async (request, response) => {
 
 exports.addPage = onRequest({timeoutSeconds: 3600}, async (request, response) => {
   //test call of the addPage function with the linux man pages
-  await add.addPage("https://man7.org/linux/man-pages/dir_section_1.html", "test.org");
+  await add.addPage("https://man7.org/linux/man-pages/dir_section_1.html", "man7.org");
   response.send("<pre> Added pages! </pre>");
 });
 
