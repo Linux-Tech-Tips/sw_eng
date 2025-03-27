@@ -85,12 +85,13 @@ async function dbSetLastID(newID) {
 
 async function dbGetPageVec(pageID) {
     let result = await dbGetDocument("pageVec", pageID);
+    result.matrix = JSON.parse(result.matrix);
     return result;
 }
 
 async function dbSetPageVec(pageID, matrix, percentKnown) {
     let docObj = {
-	matrix: matrix,
+	matrix: JSON.stringify(matrix),
 	percentKnowns: percentKnown
     };
     await dbSetDocument("pageVec", pageID, docObj);
