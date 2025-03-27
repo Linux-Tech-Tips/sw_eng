@@ -41,11 +41,24 @@ exports.search = onRequest(async (request, response) => {
     response.send("<pre>Search Results: \n" + JSON.stringify(result) + "</pre>");
 });
 
+exports.postTest = onRequest((request, response) => {
+    console.log(request);
+    if(!request.body.data) {
+	response.send("Please enter POST request field 'data'");
+    }
+    response.send("<pre>Test data received: " + request.body.data + "</pre>");
+});
+
 exports.addPage = onRequest({timeoutSeconds: 3600}, async (request, response) => {
   //test call of the addPage function with the linux man pages
-  let url = "https://man7.org/linux/man-pages/dir_section_1.html";
-  let domain = new URL(url).hostname;
-  await add.addPage(url, domain);
+  //let url = "https://man7.org/linux/man-pages/dir_section_1.html";
+  //let domain = new URL(url).hostname;
+  //await add.addPage(url, domain);
+  if(!request.body.urls) {
+    response.send("Please enter links (in a post request parameter urls=link1,link2,link3)");
+    return;
+  }
+  await add.addPage(request.body.urls.split(","), new URL(request.body.urls.split(",")[0]).hostname);
   
   response.send("<pre> Added pages! </pre>");
 });

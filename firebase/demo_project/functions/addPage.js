@@ -9,17 +9,17 @@ const meanings = require("./meanings.js");
 const crawler = require("./crawler.js");
 
 /** Takes in a string baseUrl and a domain for a website, finds any viable subpages, processes them and adds the processed data into the database */
-async function addPage(baseUrl, domain) {
+async function addPage(urls, baseUrl) {
     /* Fetch array of urls and create array of page strings */
-    let limit = 50; //limit on how many links the crawler extracts
-    let urls = [];
+    //let limit = 50; //limit on how many links the crawler extracts
+    //let urls = [];
     let pages = [];
-    urls = await crawler.extractAllLinks(baseUrl, domain, limit);
+    //urls = await crawler.extractAllLinks(baseUrl, domain, limit);
 	/* A few print statements for the crawler. */
-	console.log("The number of links extracted: "  + urls.length);
-	console.log("The links extracted: " + urls);
+	//console.log("The number of links extracted: "  + urls.length);
+	//console.log("The links extracted: " + urls);
     
-    for(let i  = 0; i <  urls.length; ++i) {
+    for(let i  = 0; i < urls.length; ++i) {
       pages[i] = (await crawler.getPageData(urls[i]));
     }
 
