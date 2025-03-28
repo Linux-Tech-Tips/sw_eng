@@ -89,10 +89,11 @@ async function dbGetPageVec(pageID) {
     return result;
 }
 
-async function dbSetPageVec(pageID, matrix, percentKnown) {
+async function dbSetPageVec(pageID, matrix, percentKnown, nextID) {
     let docObj = {
-	matrix: JSON.stringify(matrix),
-	percentKnowns: percentKnown
+	matrix: matrix,
+	percentKnowns: percentKnown,
+	nextID: nextID
     };
     await dbSetDocument("pageVec", pageID, docObj);
 }

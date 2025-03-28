@@ -26,7 +26,7 @@ async function stringToMatrix(text) {
 
   }
   vectorisedText[0] = vectorisedText[0]/textArray.length; //convert the number of found words into percentage
-
+  
   return vectorisedText;
 }
 
