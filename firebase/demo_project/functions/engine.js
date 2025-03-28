@@ -26,7 +26,12 @@ async function search(query) {
     //for(word of stripQuery) {
 	//let currList = await db.dbGetDocument("wordPages", key);
     //}
-
+    
+    let wordPages = [];
+    for(word in stripQuery) {
+      let currList = await dbGetDocument(wordPages, word);
+      wordPages += currList.data();
+    }
 
     /* Get all scores */
     let [metadata, meaning, content] = await Promise.all([metadataScore(stripQuery), meaningScore(stripQuery), contentScore(stripQuery)]);

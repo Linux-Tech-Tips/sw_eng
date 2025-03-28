@@ -57,10 +57,10 @@ async function addPage(urls, baseUrl) {
 	    	let currList = await db.dbGetDocument("wordPages", key);
 	    	currList = currList.data();
 	    	
-			if(currList == undefined){
-      	    	currList = {};
-	      		currList.ids = [];
-	      		currList.ids.push(pageID);
+		if(currList == undefined){
+      	          currList = {};
+	      	  currList.ids = [];
+	      	  currList.ids.push(pageID);
    	    	}
 
 	    else if(!currList.ids.includes(pageID)){
@@ -76,23 +76,18 @@ async function addPage(urls, baseUrl) {
 	let matrix = await meanings.stringToMatrix(pages[i][2]);
 	matrixString = JSON.stringify(matrix);
 
-        console.log("I have stringed the matrix");
         /* If the matrix is longer than Firestore maximum document size fragment it */
-	const firebaseLimit = 1048487;
+	const firebaseLimit = 1048287;
         let fragmentNum = 0;
-        let nextID = -1;
-        let currSection = matrixString.substring(0, firebaseLimit);
-        console.log(currSection); 
-        console.log(currSection.length);	
-        for(let i = 0; i < matrixString.length; i += firebaseLimit) {
+        if((i + firebaseLimit)<matrixString.length) {
+            await db.dbSetPageVec(pageID.toString()+ "_" + fragmentNum, matrixString.substring(i, firebaseLimit), matrix[0], fragmentNum+1);
+          } 
+
+        for(let i = firebaseLimit; i < matrixString.length; i += firebaseLimit) {
           if((i + firebaseLimit)>=matrixString.length) {
-            nextID = -1;
+            fragmentNum = -2;
           }
-          else {
-            nextID = pageID.toString() + "_" + (fragmentNum+1); 
-          }
-          await db.dbSetPageVec(pageID.toString()+ "_" + fragmentNum, currSection, matrix[0], nextID);
-          ++fragmentNum;  
+          await db.dbSetPageVec(pageID.toString()+ "_" + fragmentNum, matrixString.substring(i, firebaseLimit), matrix[0], fragmentNum+1);
         }
   console.log("Added Page Vector to Database");
 	
