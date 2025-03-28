@@ -1,0 +1,128 @@
+/* Main CSS */
+
+body {
+    font-family: 'Futura', sans-serif, 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #1c1c1e, #0f0f12);
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#search-container, #results-container {
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+}
+
+#logo {
+    font-size: 3em;
+    font-weight: bold;
+    background: linear-gradient(to right, #66CDAA, #EE82EE);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #66CDAA;
+}
+
+#results-container #logo {
+    font-size: 2em;
+    text-align: center;
+}
+
+#search-box {
+    background-color: #262629;
+    border: 1px solid #424242;
+    padding: 15px;
+    width: 70%;
+    border-radius: 30px;
+    font-size: 1.2em;
+    color: #e0e0e0;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#search-box:focus {
+    border-color: #66CDAA;
+}
+
+#search-button {
+    background: linear-gradient(to right, #a864d0,#7ac9e6);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-left: 10px;
+}
+
+#search-button:hover {
+    transform: scale(1.05);
+}
+
+#add-page {
+margin-top: 20px;
+color: #9e9e9e;
+cursor: pointer;
+transition: color 0.3s ease;
+}
+
+#add-page:hover {
+color: #66CDAA;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Results Page */
+
+#results-container {
+justify-content: flex-start;
+margin-top: 50px;
+}
+
+.result-item {
+    background-color: #262629;
+    border: 1px solid #424242;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.result-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.result-title {
+    font-size: 1.2em;
+    color: #64b5f6;
+    margin-bottom: 10px;
+}
+
+.result-link {
+    color: #81d4fa;
+    text-decoration: none;
+}
+
+.result-link:hover {
+    text-decoration: underline;
+}
+
+.result-description {
+    color: #9e9e9e;
+    line-height: 1.6;
+}
