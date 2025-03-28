@@ -1,3 +1,5 @@
 \subsection{Meanings Search}
-to be done by CEDAR\\
-meanings description, processing and search
+The function meaningSearch takes in two matrices and returns an array. One represents the query, the other the page. Each has the first value in the array set as the percentage of words found as vector representations from the original string, which informs how much confidence to place on this similarity score. The array it returns holds the confidence value as its first entry and the similarity score as the second.\\
+
+The function then performs a cosine similarity between each word in the query with each word in the page. These values are saved in an array called similarity. It calculates the average similarity, increasing this similarity if any one word appears above averagely often. This helps the result be more accurate than just a plain avarage similarity.\\
+The confidence value is calculated by taking the average between the percentage of words known in the query and the page.  
