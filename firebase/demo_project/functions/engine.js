@@ -21,6 +21,13 @@ async function search(query) {
     /* Preprocess query */
     let stripQuery = textProcessing.stripText(query);
 
+    /* Getting page indices */
+    //let indices = []
+    //for(word of stripQuery) {
+	//let currList = await db.dbGetDocument("wordPages", key);
+    //}
+
+
     /* Get all scores */
     let [metadata, meaning, content] = await Promise.all([metadataScore(stripQuery), meaningScore(stripQuery), contentScore(stripQuery)]);
 
@@ -40,7 +47,7 @@ async function search(query) {
 
     /* Sort and return resulting array */
     result.sort((a, b) => {
-	return a.pageScore - b.pageScore;
+	return b.pageScore - a.pageScore;
     });
     return result;
 }
@@ -75,7 +82,7 @@ async function meaningScore(pQuery) {
     pageData.forEach(doc => {
 	let pageID = doc.id;
 	//console.log("Meaning Score: " + matrixQuery + " (" + matrixQuery.length + ") --- " + doc.data().matrix + "(" + doc.data().matrix.length + ")");
-	result[pageID] = meanings.meaningSearch(Object.values(matrixQuery), Object.values(doc.data().matrix));
+	result[pageID] = meanings.meaningSearch(Object.values(matrixQuery), Object.values(JSON.parse(doc.data().matrix)));
     });
     return result;
 }
