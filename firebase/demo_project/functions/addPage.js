@@ -38,40 +38,37 @@ async function addPage(urls, baseUrl) {
 
     /* Go through preprocessed pages, save into database */
     for(let i = 0; i < pages.length; ++i) {
-      /* Increment ID of last page added */
-      ++pageID;
+	/* Increment ID of last page added */
+	++pageID;
+
+	/* Add page to database */
+	await db.dbSetPage(encodeURIComponent(urls[i]), baseUrl, new Date(), pages[i][0], pageID);
+	console.log("Added page to db: " + encodeURIComponent(urls[i]) + ", " + baseUrl);
 	
-      /* Add page to database */
-      await db.dbSetPage(encodeURIComponent(urls[i]), baseUrl, new Date(), pages[i][0], pageID);
-      console.log("Added page to db: " + encodeURIComponent(urls[i]) + ", " + baseUrl);
-	
-      /* Process metadata and add to database */
-      let termFreq = await metadata.metadataProcess([pages[i][1], pages[i][2]]);
-      await db.dbSetPageMetadata(pageID.toString(), termFreq);
-      console.log("Added Page Metadata");
+	/* Process metadata and add to database */
+	let termFreq = await metadata.metadataProcess([pages[i][1], pages[i][2]]);
+	await db.dbSetPageMetadata(pageID.toString(), termFreq);
+	console.log("Added Page Metadata");
 
 	/* Add the page ID to the documents for each word where the termFreq is above a threshold x */
 	let threshold = 0.01; //placeholder value
-	for(key in termFreq) {	
-	  	if(termFreq[key] > threshold) {	
-	    	let currList = await db.dbGetDocument("wordPages", key);
-	    	currList = currList.data();
-	    	
-		if(currList == undefined){
-      	          currList = {};
-	      	  currList.ids = [];
-	      	  currList.ids.push(pageID);
-   	    	}
+	for(key in termFreq) {
+	    if(termFreq[key] > threshold) {	
+		let currList = await db.dbGetDocument("wordPages", key);
+		currList = currList.data();
 
-	    else if(!currList.ids.includes(pageID)){
-   	      		currList.ids.push(pageID);
-        }
-	  
-	    await db.dbSetDocument("wordPages", key, currList);
-	  }
+		if(currList == undefined) {
+		    currList = {};
+		    currList.ids = [];
+		    currList.ids.push(pageID);
+		} else if(!currList.ids.includes(pageID)) {
+		    currList.ids.push(pageID);
+		}
+		await db.dbSetDocument("wordPages", key, currList);
+	    }
 	}
-  console.log("Added keys to wordPages");
-	
+	console.log("Added keys to wordPages");
+
 	/* Process meaning and add to database */
 	let matrix = await meanings.stringToMatrix(pages[i][2]);
 	matrixString = JSON.stringify(matrix);
@@ -79,17 +76,15 @@ async function addPage(urls, baseUrl) {
         /* If the matrix is longer than Firestore maximum document size fragment it */
 	const firebaseLimit = 1048287;
         let fragmentNum = 0;
-        if((i + firebaseLimit)<matrixString.length) {
-            await db.dbSetPageVec(pageID.toString()+ "_" + fragmentNum, matrixString.substring(i, firebaseLimit), matrix[0], fragmentNum+1);
-          } 
-
-        for(let i = firebaseLimit; i < matrixString.length; i += firebaseLimit) {
-          if((i + firebaseLimit)>=matrixString.length) {
-            fragmentNum = -2;
-          }
-          await db.dbSetPageVec(pageID.toString()+ "_" + fragmentNum, matrixString.substring(i, firebaseLimit), matrix[0], fragmentNum+1);
-        }
-  console.log("Added Page Vector to Database");
+	/* Adding the initial fragment */
+	await db.dbSetPageVec(pageID.toString(), matrixString.substring(0, firebaseLimit), matrix[0], ((firebaseLimit < matrixString.length ? ++fragmentNum : -1)));
+	/* Adding the rest of the fragments if any */
+	for(let i = firebaseLimit; i < matrixString.length; i += firebaseLimit) {
+	    await db.dbSetPageVec(pageID.toString() + "_" + fragmentNum, 
+				    matrixString.substring(i, (i + firebaseLimit)), matrix[0], 
+				    ((i + firebaseLimit) < matrixString.length ? ++fragmentNum : -1));
+	}
+	console.log("Added Page Vector to Database");
 	
 	/* Add content to database */
 	await db.dbSetPageContent(pageID.toString(), pages[i][2]);
