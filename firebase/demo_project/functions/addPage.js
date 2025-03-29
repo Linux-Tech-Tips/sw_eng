@@ -50,6 +50,7 @@ async function addPage(urls, baseUrl) {
 	await db.dbSetPageMetadata(pageID.toString(), termFreq);
 	console.log("Added Page Metadata");
 
+	/*
 	/* Add the page ID to the documents for each word where the termFreq is above a threshold x */
 	let threshold = 0.01; //placeholder value
 	for(key in termFreq) {
@@ -68,7 +69,8 @@ async function addPage(urls, baseUrl) {
 	    }
 	}
 	console.log("Added keys to wordPages");
-
+	*/
+	    
 	/* Process meaning and add to database */
 	let matrix = await meanings.stringToMatrix(pages[i][2]);
 	matrixString = JSON.stringify(matrix);
