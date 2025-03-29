@@ -51,7 +51,7 @@ async function addPage(urls, baseUrl) {
 	console.log("Added Page Metadata");
 
 	/*
-	/* Add the page ID to the documents for each word where the termFreq is above a threshold x */
+	/* Add the page ID to the documents for each word where the termFreq is above a threshold x *
 	let threshold = 0.01; //placeholder value
 	for(key in termFreq) {
 	    if(termFreq[key] > threshold) {	
