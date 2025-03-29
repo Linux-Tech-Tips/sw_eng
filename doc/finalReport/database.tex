@@ -2,4 +2,12 @@
 To be done by MARTIN \\
 how database work??
 \subsection{Uploading Vocabulary}
+To use the meanings search, a lookup table of word embedddings must be created in the database which can be accessed by functions. This is the collection titled Words. \\
+Due to time constraints, a pre-trained list of word embeddings was downloaded in form of a txt file. This file contained 400k 50-dimensional word embeddings and their respective words. 
+This file was then read into a function which turned them into an array of vectors indexed by the words. Then many downloaded html pages of technical documentation (mainly manual pages, but also documentation on different languages and general articles about computer science) were passed into the programme. These were processed by the text processing functions to be used on all pages added to the database to remove stopwords and punctuation. Then each file was read through and if a word in the file was found in the array of word embeddings, it was added to the database. Thus the 400k vectors were reduced to just over 5000 words which are commonly found in the sort of texts to be searched by the engine.    
+
 \subsection{WordPages - a retired feature}
+To make the search function more efficient a plan was conceived to sort pages based on words that appeared frequently in them. \\
+When adding pages, each word is checked for its frequency and if it's above a certain threshold the page's ID is entered into a firestore document of that word. \\
+When searching, only the pages who are in the wordPages entries for each word in the query are checked. This should make search more efficient. \\
+However, the wordPages feature was retired after we realised it resulted in less accurate searches. With more time, it could potentially be fine-tuned into creating a more accurate and efficient search engine. 

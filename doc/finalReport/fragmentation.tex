@@ -1,0 +1,11 @@
+\subsection{Fragmentation}
+Firestore has a maximum document size of 1 MiB. This is too small for larger pages when converted to matrix form. To still be able to include large pages, a (de-)fragmentation process had to be implemented when the pages are loaded into the database and when they are fetched from the database. \\
+
+\textbf{Fragmentation} \\
+Once the text has been transformed into a matrix by stringToMatrix, it is converted back into a string. 
+It is then split into pieces by every 1,048,287th character, which are written to the database. 
+To enable defragmentation, the pieces are titled ID\_FragmentNum and each contain a field nextID which link to the next fragment. 
+If there is no next fragment, nextID is set to -1. \\
+
+\textbf{Defragmentation}\\
+MARTIN PLS WRITE
