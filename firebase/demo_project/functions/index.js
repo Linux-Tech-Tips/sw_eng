@@ -28,7 +28,7 @@ exports.uploadVocab = onRequest({timeoutSeconds: 3600, memory: "2GiB"}, async (r
   response.send("<pre> Added vocabulary! </pre>");
 });
 
-exports.search = onRequest(async (request, response) => {
+exports.search = onRequest({cors: true}, async (request, response) => {
     /* Get user query */
     if(!request.query.query) {
 	response.send("Please enter query (using the URL parameter query=query_text)");
@@ -49,7 +49,7 @@ exports.postTest = onRequest((request, response) => {
     response.send("<pre>Test data received: " + request.body.data + "</pre>");
 });
 
-exports.addPage = onRequest({timeoutSeconds: 3600}, async (request, response) => {
+exports.addPage = onRequest({timeoutSeconds: 3600, cors: true}, async (request, response) => {
   //test call of the addPage function with the linux man pages
   //let url = "https://man7.org/linux/man-pages/dir_section_1.html";
   //let domain = new URL(url).hostname;
