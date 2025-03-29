@@ -1,5 +1,6 @@
 /* File containing utility functions to work with the Firestore database */
-module.exports = { dbGetCollection, dbGetDocument, dbSetDocument,
+module.exports = { dbGetCollection, dbOpenCollection, dbGetCollectionDoc, dbSetCollectionDoc,
+		    dbGetDocument, dbSetDocument,
 		    dbGetPage, dbGetPages, dbSetPage, 
 		    dbGetWord, dbSetWord,
 		    dbGetLastID, dbSetLastID,
@@ -20,6 +21,23 @@ const db = getFirestore();
 async function dbGetCollection(colName) {
     const data = await db.collection(colName).get();
     return data;
+}
+
+/** Returns an open database collection which can be used later */
+function dbOpenCollection(colName) {
+    return db.collection(colName);
+}
+
+/** Returns a document from a given open collection */
+async function dbGetCollectionDoc(openCol, docName) {
+    const data = await openCol.doc(docName).get();
+    return data;
+}
+
+/** Sets data to a document in a given open collection */
+async function dbSetCollectionDoc(openCol, docName, docObject) {
+    await openCol.doc(docName).set(docObject);
+    return true;
 }
 
 /** Returns the contents of the given document (docName) within the given collection (colName) as a document object */
