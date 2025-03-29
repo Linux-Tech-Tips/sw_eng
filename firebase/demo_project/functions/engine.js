@@ -42,7 +42,25 @@ async function search(query) {
 
     /* Get all scores */
     let [metadata, meaning, content] = await Promise.all([metadataScore(stripQuery), meaningScore(stripQuery), contentScore(stripQuery)]);
-
+    
+    //normalise meaning score into [0,1]
+    //I know there's probably a better way to find the max/min score but gahhh
+    let maxVal = -1;
+    let minVal = 1;
+    for(id in meaning) {
+      if(meaning[id][1]>maxVal) {
+        maxVal = (meaning[id][1]);
+      }
+      else if(meaning[id][1]<minVal) {
+        minVal = (meaning[id][1]);
+      }
+    }
+    console.log("Minimum value: " + minVal);
+    console.log("Maximum value: " + maxVal);
+    for(id in meaning) {
+      meaning[id][1] = ((meaning[id][1]-minVal)/(maxVal-minVal));
+    }
+    
     /* Go through all page IDs, get score */
     let pages = await dbUtil.dbGetCollection("pages");
     let result = [];
@@ -53,6 +71,12 @@ async function search(query) {
 	    return;
 	}
 	let score = getScore(metadata[pageID.toString()], 0.5, meaning[pageID.toString()][1], meaning[pageID.toString()][0], content[pageID.toString()]);
+	let testScore = getScoreTest(metadata[pageID.toString()], 0.5, meaning[pageID.toString()][1], meaning[pageID.toString()][0], content[pageID.toString()]);
+	console.log("Metadata score for " + pageID + ": " + metadata[pageID]);
+	console.log("Meaning score for " + pageID + ": " + meaning[pageID]);
+	console.log("Content score for " + pageID + ": " + content[pageID]);
+	console.log("Total score for " + pageID + ": " + score);
+	console.log("Total score with lower meaning value for " + pageID + ": " + testScore);
 	result.push({
 	    pageTitle: doc.data().pageTitle,
 	    pageUrl: doc.id,
@@ -70,6 +94,11 @@ async function search(query) {
 /** Takes in the three scores from each engine component, as well as the confidence value and relevance constant, and returns the resulting score */
 function getScore(metadataScore, metadataRelevance, meaningScore, confidenceValue, contentScore) {
     return (metadataRelevance * metadataScore) + (1 - metadataRelevance) * ((confidenceValue * meaningScore) + (1 - confidenceValue) * contentScore);
+}
+
+//test with a lower meaning score relevance
+function getScoreTest(metadataScore, metadataRelevance, meaningScore, confidenceValue, contentScore) {
+    return (metadataRelevance * metadataScore) + (1 - metadataRelevance) * ((0.7 * confidenceValue * meaningScore) + (1 - confidenceValue) * contentScore);
 }
 
 

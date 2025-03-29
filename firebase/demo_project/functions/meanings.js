@@ -74,9 +74,13 @@ function meaningSearch(query, page) {
   //loop through array, if any words are big important --> add to the similarity
   for(i=0; i<similarity.length; i++) { 
     if(similarity[i]>avgSimilarity) { //increase the similarity if a word appears more often than average
-      avgSimilarity+=similarity[i]/similarity.length;
+      avgSimilarity+=similarity[i];
+    }
+    if(similarity[i]==1) {
+      avgSimilarity+=20;
     }
   }
+  
   let output = [confidenceValue, avgSimilarity];
   return output; 
   
