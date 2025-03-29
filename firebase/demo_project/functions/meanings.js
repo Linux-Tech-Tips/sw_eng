@@ -15,9 +15,11 @@ async function stringToMatrix(text) {
   let key = 0; //key for making the matrix of vectors an object
   let currVec = []; //vector for the current word
 
+  let words = db.dbOpenCollection("words");
+
   //loop through the array, if the word is findable in the vector table --> add it and increment the counter of how many words were found
   for(let i=0; i<textArray.length; i++) {
-    currVec = await db.dbGetWord(textArray[i]);
+    currVec = await db.dbGetCollectionDoc(words, textArray[i]);
     if(currVec.data()){ 
       key = i+1;
       vectorisedText[key]= currVec.data().vec;
