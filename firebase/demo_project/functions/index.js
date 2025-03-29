@@ -38,7 +38,7 @@ exports.search = onRequest({cors: true}, async (request, response) => {
     console.log("Searching with query: " + query);
 
     let result = await engine.search(query);
-    response.send("<pre>Search Results: \n" + JSON.stringify(result) + "</pre>");
+    response.send(JSON.stringify(result));
 });
 
 exports.postTest = onRequest((request, response) => {
