@@ -21,16 +21,23 @@ async function search(query) {
     /* Preprocess query */
     let stripQuery = textProcessing.stripText(query);
 
-    /* Getting page indices */
-    //let indices = []
-    //for(word of stripQuery) {
-	//let currList = await db.dbGetDocument("wordPages", key);
-    //}
-    
-    let wordPages = [];
-    for(word in stripQuery) {
-      let currList = await dbGetDocument(wordPages, word);
-      wordPages += currList.data();
+    /* Get indices of relevant pages */
+    /*let wordPages = [];
+    let words = dbUtil.dbOpenCollection("wordPages");
+    for(word of stripQuery.split(" ")) {
+	console.log("checking word " + word)
+	let currList = await dbUtil.dbGetCollectionDoc(words, word);
+	console.log(currList);
+	if(currList.data()) {
+	    console.log("found data");
+	    for(num of currList.data().ids) {
+		console.log("looking through id " + num);
+		if(!wordPages.includes(num)) {
+		    wordPages.push(num);
+		    console.log("added id " + num);
+		}
+	    }
+	}
     }
 
     /* Get all scores */
@@ -42,7 +49,10 @@ async function search(query) {
 
     pages.forEach(doc => {
 	let pageID = doc.data().pageID;
-	let score = getScore(metadata[pageID], 0.5, meaning[pageID][1], meaning[pageID][0], content[pageID]);
+	if(pageID.toString().includes('_')) {
+	    return;
+	}
+	let score = getScore(metadata[pageID.toString()], 0.5, meaning[pageID.toString()][1], meaning[pageID.toString()][0], content[pageID.toString()]);
 	result.push({
 	    pageTitle: doc.data().pageTitle,
 	    pageUrl: doc.id,
@@ -71,7 +81,10 @@ async function metadataScore(pQuery) {
 
     pageData.forEach(doc => {
 	let pageID = doc.id;
-	result[pageID] = metadata.metadataScore(pQuery, doc.data().termFrequency);
+	if(pageID.toString().includes('_')) {
+	    return;
+	}
+	result[pageID.toString()] = metadata.metadataScore(pQuery, doc.data().termFrequency);
     });
     return result;
 }
@@ -86,8 +99,20 @@ async function meaningScore(pQuery) {
 
     pageData.forEach(doc => {
 	let pageID = doc.id;
+	if(pageID.toString().includes('_')) {
+	    return;
+	}
 	//console.log("Meaning Score: " + matrixQuery + " (" + matrixQuery.length + ") --- " + doc.data().matrix + "(" + doc.data().matrix.length + ")");
-	result[pageID] = meanings.meaningSearch(Object.values(matrixQuery), Object.values(JSON.parse(doc.data().matrix)));
+	let pageContent = doc.data().matrix;
+	if(doc.data().nextID >= 0) {
+	    let currentDoc = doc;
+	    while(currentDoc.data().nextID >= 0) {
+		let docID = pageID + "_" + currentDoc.data().nextID;
+		currentDoc = pageData.docs.find((element) => element.id == docID);
+		pageContent += currentDoc.data().matrix;
+	    }
+	}
+	result[pageID.toString()] = meanings.meaningSearch(Object.values(matrixQuery), Object.values(JSON.parse(pageContent)));
     });
     return result;
 }
@@ -100,7 +125,10 @@ async function contentScore(pQuery) {
 
     pageData.forEach(doc => {
 	let pageID = doc.id;
-	result[pageID] = content.calculate_similarity_score(pQuery.split(" "), doc.data().processedPage.split(" "));
+	if(pageID.toString().includes('_')) {
+	    return;
+	}
+	result[pageID.toString()] = content.calculate_similarity_score(pQuery.split(" "), doc.data().processedPage.split(" "));
     });
     return result;
 }
