@@ -1,17 +1,18 @@
 const form = document.getElementById('add-form');
-const loadingOverlay = document.getElementById('loading-overlay');
+const addLoadingOverlay = document.getElementById('add-loading-overlay');
 const messageOverlay = document.getElementById('message-overlay');
 const messageBox = document.getElementById('message-box');
 
 form.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    loadingOverlay.style.display = 'flex';
+    addLoadingOverlay.style.display = 'flex';
+
+    // Note: This is a placeholder to randomly have successes and failures. This will be replaced with actual responce from server
 
     setTimeout(function() {
-        loadingOverlay.style.display = 'none';
+        addLoadingOverlay.style.display = 'none';
 
-        // For Martin: This is a placeholder to randomly have successes and failures. This will be replaced with actual responce from server
         const success = Math.random() < 0.5;
 
         if (success) {
@@ -26,7 +27,7 @@ form.addEventListener('submit', function(event) {
 
         setTimeout(() => {
             messageOverlay.style.display = 'none';
-            messageBox.className = "message-box"
-        }, 3000);
-    }, 2000);
+            messageBox.className = "message-box";
+        }, 1500);
+    }, 4000);
 });
