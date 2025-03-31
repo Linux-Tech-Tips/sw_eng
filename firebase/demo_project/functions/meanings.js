@@ -61,7 +61,12 @@ function meaningSearch(query, page) {
       //calculate the dot product + the cosine similarity
       dotProduct = query[i].reduce((acc, n, k) => acc + (n * page[j][k]), 0);
       cosim = dotProduct/(magPage*magQuery);
-      similarity[i]+=cosim; //increment the similarity index for that word by the cosine similarit
+      similarity[i]+=cosim; //increment the similarity index for that word by the cosine similarity
+      
+      if(cosim==1) {
+        console.log("Exact word match found!");
+	similarity[i]+=10;
+      }
     }
     //console.log(similarity);
     //divide the similarity of the query word by the number of words in the page
@@ -76,8 +81,9 @@ function meaningSearch(query, page) {
     if(similarity[i]>avgSimilarity) { //increase the similarity if a word appears more often than average
       avgSimilarity+=similarity[i];
     }
-    if(similarity[i]==1) {
-      avgSimilarity+=20;
+    if(similarity[i]==page.length) {
+      console.log("Exact word found!");
+      avgSimilarity+=100;
     }
   }
   

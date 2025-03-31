@@ -15,12 +15,17 @@ const engine = require("./engine.js");
 const vocab = require("./uploadVocab.js");
 const add = require("./addPage.js");
 const crawler = require("./crawler.js");
-
+const grep = require("./testMeanings.js"); 
 
 exports.helloWorld = onRequest((request, response) => {
   logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
 });
+
+exports.testGrep = onRequest((request, response) => {
+  grep.testMeanings();
+  response.send("test run!");
+}); 
 
 /* Upload the word embeddings vocabulary to the database */
 exports.uploadVocab = onRequest({timeoutSeconds: 3600, memory: "2GiB"}, async (request, response) => {
