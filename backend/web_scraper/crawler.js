@@ -2,7 +2,7 @@ const cheerio = require("cheerio");
 const axios = require("axios");
 const parse = require('robots-txt-parse');
 const url = require('url');
-module.exports = { extractAllLinks, getPageData };
+module.exports = { extractLinks, extractAllLinks, getPageData };
 
 // A lambda function that is supposed to place the crawler to "sleep" for a short amount of time so that it's not automatically banned.
 const delay = (tm) => {setTimeout(() => {}, tm * 1000)};
@@ -177,7 +177,7 @@ async function extractAllLinks(url, domain, limit) {
     let disallowed_links = await filterRules("disallow", robots);
     stack.push(url);
 
-    while(stack.length > 0 && limit > -1) {
+    while(stack.length > 0) {
         // get the topmost url from the stack.
         currentUrl = stack.pop();
         //console.log(currentUrl);
@@ -260,4 +260,8 @@ async function extractAllLinks(url, domain, limit) {
     }
 */
     return linkStorage;
+}
+
+async function urls_join(urls) {
+    return urls.join(", ");
 }
