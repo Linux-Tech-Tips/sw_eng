@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Add Page</title>
-    <script src="search-loading.js" defer></script>
+
+    <script src="search-loading.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particles-config.js"></script>
+    <script src="add-page.js"></script>
+
 </head>
 <body>
 
@@ -19,24 +24,12 @@
     <div id="add-page-container">
         <div id="logo">Add Page</div>
 
-        <form id="add-form">
-            <div class="form-group">
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="title" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" rows="4" required></textarea>
-            </div>
+        <form id="add-form" action="javascript:void(0);">
             <div class="form-group">
                 <label for="link">Link:</label>
                 <input type="url" id="link" name="link">
             </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" id="submit-button">Submit</button>
+            <button onclick="addPage('link', 'add-loading-overlay', 'message-box', 'message-overlay')" type="submit" id="submit-button">Submit</button>
         </form>
     </div>
 
@@ -51,10 +44,6 @@
     <div id="message-overlay">
         <div id="message-box" class="message-box"></div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="particles-config.js"></script>
-    <script src="add-page-loading.js"></script>
 
 </body>
 </html>
