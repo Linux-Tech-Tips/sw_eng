@@ -71,21 +71,18 @@ async function search(query) {
 	    return;
 	}
 	let score = getScore(metadata[pageID.toString()], 0.5, meaning[pageID.toString()][1], meaning[pageID.toString()][0], content[pageID.toString()]);
-	let testScore = getScoreTest(metadata[pageID.toString()], 0.5, meaning[pageID.toString()][1], meaning[pageID.toString()][0], content[pageID.toString()]);
 /*	console.log("Metadata score for " + pageID + ": " + metadata[pageID]);
 	console.log("Meaning score for " + pageID + ": " + meaning[pageID]);
 	console.log("Content score for " + pageID + ": " + content[pageID]);
 	console.log("Total score for " + pageID + ": " + score);
-	//console.log("Total score with lower meaning value for " + pageID + ": " + testScore);
 */	
         result.push({
 	    pageTitle: doc.data().pageTitle,
 	    pageUrl: doc.id,
 	    pageScore: score
-	});
+
+        });
     });
-    console.log("Meaning score for 5: " + meaning[5]);
-    console.log("Meaning score for 46: " + meaning[46]);
     /* Sort and return resulting array */
     result.sort((a, b) => {
 	return b.pageScore - a.pageScore;

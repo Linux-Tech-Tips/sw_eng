@@ -55,16 +55,14 @@ function meaningSearch(query, page) {
 
     for(let j=1; j<page.length; j++) { //for each word in the page
       //calculate the magnitude of the current word
-      magPage = page[i].reduce((acc, n) => acc + (n*n),0);
+      magPage = page[j].reduce((acc, n) => acc + (n*n),0);
       magPage = Math.sqrt(magPage);
 
       //calculate the dot product + the cosine similarity
       dotProduct = query[i].reduce((acc, n, k) => acc + (n * page[j][k]), 0);
       cosim = dotProduct/(magPage*magQuery);
       similarity[i]+=cosim; //increment the similarity index for that word by the cosine similarity
-      
       if(cosim==1) {
-        console.log("Exact word match found!");
 	similarity[i]+=10;
       }
     }
