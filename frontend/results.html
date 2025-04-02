@@ -18,7 +18,7 @@
     <div id="particles-js"></div>
 
     <div id="search-container" style="position: absolute; top: 20px; left: 20px; width: auto; max-width: none; text-align: left; display: flex; align-items: center;">
-        <input type="text" id="search-box" placeholder="Search with TDS Engine..." style="width: 300px;">
+        <input type="text" id="search-box" placeholder="Search with TDS Engine..." style="width: 300px;" onkeydown="if(event.code == 'Enter') { sendSearch('search-box', 'results.html'); }">
         <button onclick="sendSearch('search-box', 'results.html')" id="search-button" style="margin-left: 10px;">Search</button>
     </div>
 

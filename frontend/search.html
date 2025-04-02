@@ -19,7 +19,7 @@
 
     <div id="search-container">
         <div id="logo">TDS Engine</div>
-        <input type="text" id="search-box" placeholder="Search with TDS Engine...">
+        <input type="text" id="search-box" placeholder="Search with TDS Engine..." onkeydown="if(event.code == 'Enter') { sendSearch('search-box', 'results.html'); }">
         <button onclick="sendSearch('search-box', 'results.html')" id="search-button">Search</button>
 
         <div id="add-page">
