@@ -150,9 +150,10 @@ align-items: stretch;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: left;
 }
+
 
 label {
     display: block;
@@ -177,6 +178,29 @@ input[type="password"] { /* Added password input here */
 
 textarea {
     resize: vertical;
+}
+
+#add-link-buttons button { 
+    background: linear-gradient(to right, #a864d0, #7ac9e6);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 100%;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin: 0 5px;
+}
+
+#add-link-buttons button:hover { 
+    transform: scale(1.05);
+}
+
+#add-link-buttons { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
 }
 
 #submit-button {
