@@ -29,8 +29,10 @@
                 <label for="link">Link:</label>
                 <input type="url" id="link0" name="link0">
             </div>
-	    <button onclick="addLink();">+</button>
-	    <button onclick="removeLink();">-</button>
+            <div id="add-link-buttons">
+                <button onclick="addLink();">+</button>
+                <button onclick="removeLink();">-</button>
+            </div>
             <button onclick="addPage('add-loading-overlay', 'message-box', 'message-overlay');" type="submit" id="submit-button">Submit</button>
         </form>
     </div>
