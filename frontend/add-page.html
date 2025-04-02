@@ -25,11 +25,13 @@
         <div id="logo">Add Page</div>
 
         <form id="add-form" action="javascript:void(0);">
-            <div class="form-group">
+            <div class="form-group" id="add-form-group">
                 <label for="link">Link:</label>
-                <input type="url" id="link" name="link">
+                <input type="url" id="link0" name="link0">
             </div>
-            <button onclick="addPage('link', 'add-loading-overlay', 'message-box', 'message-overlay')" type="submit" id="submit-button">Submit</button>
+	    <button onclick="addLink();">+</button>
+	    <button onclick="removeLink();">-</button>
+            <button onclick="addPage('add-loading-overlay', 'message-box', 'message-overlay');" type="submit" id="submit-button">Submit</button>
         </form>
     </div>
 

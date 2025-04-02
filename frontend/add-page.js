@@ -1,14 +1,38 @@
 
+var lastLink = 0;
 
-async function addPage(urlBoxId, loadingOverlay, messageBoxId, messageOverlayId) {
+function addLink() {
+    let group = document.getElementById("add-form-group");
+    ++lastLink;
+    let nextLink = document.createElement("input");
+    nextLink.type = "url";
+    nextLink.id = "link" + lastLink;
+    nextLink.name = "link" + lastLink;
+    group.appendChild(nextLink);
+}
+
+function removeLink() {
+    let group = document.getElementById("add-form-group");
+    if(lastLink > 0) {
+	group.removeChild(group.lastChild);
+	--lastLink;
+    }
+}
+
+async function addPage(loadingOverlay, messageBoxId, messageOverlayId) {
     const addLoadingOverlay = document.getElementById(loadingOverlay);
     const messageBox = document.getElementById(messageBoxId);
     const messageOverlay = document.getElementById(messageOverlayId);
 
     addLoadingOverlay.style.display = 'flex';
 
-    const urlBox = document.getElementById(urlBoxId);
-    const submission = urlBox.value;
+    let submission = "";
+    for(let i = 0; i <= lastLink; ++i) {
+	submission += document.getElementById("link" + i).value;
+	if(i != lastLink) {
+	    submission += ",";
+	}
+    }
 
     let success = "Error";
 
