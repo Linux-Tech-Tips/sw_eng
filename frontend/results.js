@@ -39,6 +39,7 @@ async function processSearch(loadingOverlayId, resultsDivId, firebaseURL) {
         searchLoadingOverlay.style.display = 'none';
 
     } catch(error) {
-        window.location.href = 'index.html';
+	document.getElementById(resultsDivId).innerHTML += "<div class='failure'>Error encountered: " + error.toString() + "</div>"
+        searchLoadingOverlay.style.display = 'none';
     }
 }
