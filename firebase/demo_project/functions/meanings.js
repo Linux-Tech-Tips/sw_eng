@@ -79,10 +79,6 @@ function meaningSearch(query, page) {
     if(similarity[i]>avgSimilarity) { //increase the similarity if a word appears more often than average
       avgSimilarity+=similarity[i];
     }
-    if(similarity[i]==page.length) {
-      console.log("Exact word found!");
-      avgSimilarity+=100;
-    }
   }
   
   let output = [confidenceValue, avgSimilarity];
