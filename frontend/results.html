@@ -3,59 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 20px;
-        }
+    <link rel="stylesheet" href="style.css">
+    <title>TDS Results</title>
 
-        .heading {
-            font-size: 2em;
-            margin-bottom: 5px;
-        }
+    <script src="particles-config.js"></script>
+    <script src="results.js"></script>
+    <script src="search-loading.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-        .subheading {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .result-item {
-            background-color: #f0f0f0;
-            padding: 20px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-
-        .result-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .result-body {
-            color: #333;
-        }
-    </style>
 </head>
-<body>
-    <div class="heading">Heading</div>
-    <div class="subheading">Subheading</div>
+<body onload="processSearch('search-loading-overlay', 'results-container', 'https://search-pl4q2xpkfq-uc.a.run.app/');">
 
-    <div class="result-item">
-        <div class="result-title">Title</div>
-        <div class="result-body">Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</div>
+    <div id="particles-js"></div>
+
+    <div id="search-container" style="position: absolute; top: 20px; left: 20px; width: auto; max-width: none; text-align: left; display: flex; align-items: center;">
+	<a href="index.html" style="width: 10%"><img src="engine_logo.png" alt="TDS Engine" style="width: 100%"></a>
+        <input type="text" id="search-box" placeholder="Search with TDS Engine..." style="width: 300px;" onkeydown="if(event.code == 'Enter') { sendSearch('search-box', 'results.html'); }">
+        <button onclick="sendSearch('search-box', 'results.html')" id="search-button" style="margin-left: 10px;">Search</button>
     </div>
 
-    <div class="result-item">
-        <div class="result-title">Title</div>
-        <div class="result-body">Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</div>
+    <div id="results-container">
+        <div id="logo">Results</div>
     </div>
 
-    <div class="result-item">
-        <div class="result-title">Title</div>
-        <div class="result-body">Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</div>
+    <div id="search-loading-overlay">
+        <div class="loader"></div>
     </div>
+
 </body>
 </html>

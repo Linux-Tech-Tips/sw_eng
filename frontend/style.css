@@ -1,70 +1,277 @@
+/* Main CSS */
+
 body {
+    font-family: 'Futura', sans-serif, 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #1c1c1e, #0f0f12);
+    color: #e0e0e0;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
-.gradient-bg {
-    height: 100vh;
-    background: linear-gradient(-45deg, #091D4A, #2A6A6D, #3C399A, #8144B3);
-    background-size: 400% 400%;
-    animation: moveGradient 20s ease infinite;
-    position: relative;
+#search-container, #results-container {
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
 }
 
-@keyframes moveGradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 100%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+#logo {
+    font-size: 3em;
+    font-weight: bold;
+    background: linear-gradient(to right, #66CDAA, #EE82EE);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #66CDAA;
 }
 
-.nav-link {
-    position: absolute;
+#results-container #logo {
+    font-size: 2em;
+    text-align: center;
+}
+
+#search-box {
+    background-color: #262629;
+    border: 1px solid #424242;
+    padding: 15px;
+    width: 70%;
+    border-radius: 30px;
+    font-size: 1.2em;
+    color: #e0e0e0;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#search-box:focus {
+    border-color: #66CDAA;
+}
+
+#search-button {
+    background: linear-gradient(to right, #a864d0,#7ac9e6);
     color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-left: 10px;
+}
+
+#search-button:hover {
+    transform: scale(1.05);
+}
+
+#add-page {
+margin-top: 20px;
+color: #9e9e9e;
+cursor: pointer;
+transition: color 0.3s ease;
+display: block;
+}
+
+#add-page:hover {
+color: #66CDAA;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Results Page */
+
+#results-container {
+justify-content: flex-start;
+margin-top: 100px;
+}
+
+.result-item {
+    background-color: #262629;
+    border: 1px solid #424242;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.result-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.result-title {
+    font-size: 1.2em;
+    color: #64b5f6;
+    margin-bottom: 10px;
+}
+
+.result-link {
+    color: #81d4fa;
     text-decoration: none;
-    font-size: 36px;
-    font-family: 'Audiowide', sans-serif;
-    top: 20px;
 }
 
-.nav-link.tds {
-    left: 50px;
+.result-link:hover {
+    text-decoration: underline;
 }
 
-.nav-link.add-page {
-    right: 260px;
+.result-description {
+    color: #9e9e9e;
+    line-height: 1.6;
 }
 
-.nav-link.account {
-    right: 50px;
+
+/* Add Page CSS */
+
+#add-page-container {
+text-align: center;
+width: 80%;
+max-width: 600px;
+margin-top: 50px;
+margin-bottom: 15px
 }
 
-.content-container {
+#add-form {
+background-color: #262629;
+border: 1px solid #424242;
+padding: 20px;
+border-radius: 10px;
+display: flex;
+flex-direction: column;
+align-items: stretch;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #e0e0e0;
+}
+
+input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 5px;
+    color: #e0e0e0;
+    font-size: 1em;
+    box-sizing: border-box;
+    outline: none;
+    margin-bottom: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+#add-link-buttons button { 
+    background: linear-gradient(to right, #a864d0, #7ac9e6);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 100%;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin: 0 5px;
+}
+
+#add-link-buttons button:hover { 
+    transform: scale(1.05);
+}
+
+#add-link-buttons { 
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-family: 'Audiowide', sans-serif;
+    margin-bottom: 5px;
 }
 
-.content-image {
-    max-width: 450px; /
-    height: auto;
-    margin-right: 20px;
+#submit-button {
+background: linear-gradient(to right, #a864d0, #7ac9e6);
+color: white;
+border: none;
+padding: 15px 30px;
+border-radius: 30px;
+font-size: 1.2em;
+cursor: pointer;
+transition: transform 0.2s ease;
+align-self: center;
 }
 
-.content-text {
-    font-size: 50px; /* Keep at 50px PLS */
-    line-height: 0.6;
-    white-space: pre-line;
+#submit-button:hover {
+transform: scale(1.05);
 }
+
+/* Loading Animation CSS */
+
+#search-loading-overlay, #add-loading-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.8);
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+}
+
+.loader {
+    border: 4px solid #424242;
+    border-top: 4px solid #66CDAA;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#message-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 1001;
+}
+
+.message-box {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.success {
+    background-color: rgba(122, 201, 230, 0.2);
+    border: 1px solid rgba(102, 205, 170, 0.7);
+}
+
+.failure {
+    background-color: rgba(200, 100, 150, 0.2);
+    border: 1px solid rgba(180, 86, 184, 0.7);
+}
+

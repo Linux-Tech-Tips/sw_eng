@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gradient Background</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+
+    <title>TDS Engine</title>
+
+    <script src="search-loading.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particles-config.js"></script>
+
 </head>
-<body>
-    <div class="gradient-bg">
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" class="nav-link tds">TDS Engine</a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" class="nav-link add-page">Add Page</a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" class="nav-link account">Account</a>
-        <div class="content-container">
-            <img src="computer_image.png" class="content-image">
-            <div class="content-text">
-                The<br>
-                Ultimate<br>
-                Search<br>
-                Engine for<br>
-                Technical<br>
-                Information
-            </div>
+<body onload="particles();">
+
+    <div id="particles-js"></div>
+
+
+    <div id="search-container">
+        <div id="logo"><img src="engine_logo.png" alt="TDS Engine" style="width:60%"></div>
+        <input type="text" id="search-box" placeholder="Search with TDS Engine..." onkeydown="if(event.code == 'Enter') { sendSearch('search-box', 'results.html'); }">
+        <button onclick="sendSearch('search-box', 'results.html')" id="search-button">Search</button>
+
+        <div id="add-page">
+            <a href="add-page.html" id="add-page">Add Page</a>
         </div>
     </div>
+
 </body>
 </html>

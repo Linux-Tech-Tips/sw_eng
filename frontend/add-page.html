@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Add Page</title>
+
+    <script src="search-loading.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particles-config.js"></script>
+    <script src="add-page.js"></script>
+
+</head>
+<body onload="particles();">
+
+    <div id="particles-js"></div>
+
+    <div id="search-container" style="position: absolute; top: 20px; left: 20px; width: auto; max-width: none; text-align: left; display: flex; align-items: center;">
+	<a href="index.html" style="width: 10%"><img src="engine_logo.png" alt="TDS Engine" style="width: 100%"></a>
+        <input type="text" id="search-box" placeholder="Search with TDS Engine..." style="width: 300px;" onkeydown="if(event.code == 'Enter') { sendSearch('search-box', 'results.html'); }">
+        <button onclick="sendSearch('search-box', 'results.html')" id="search-button" style="margin-left: 10px;">Search</button>
+    </div>
+
+    <div id="add-page-container">
+        <div id="logo">Add Page</div>
+
+        <form id="add-form" action="javascript:void(0);">
+            <div class="form-group" id="add-form-group">
+                <label for="link">Link:</label>
+                <input type="url" id="link0" name="link0">
+            </div>
+            <div id="add-link-buttons">
+                <button onclick="addLink();">+</button>
+                <button onclick="removeLink();">-</button>
+            </div>
+            <button onclick="addPage('add-loading-overlay', 'message-box', 'message-overlay');" type="submit" id="submit-button">Submit</button>
+        </form>
+    </div>
+
+    <div id="search-loading-overlay" style="display: none;">
+        <div class="loader"></div>
+    </div>
+
+    <div id="add-loading-overlay" style="display: none;">
+        <div class="loader"></div>
+    </div>
+
+    <div id="message-overlay" onclick="this.style.display = 'none';">
+        <div id="message-box" class="message-box"></div>
+    </div>
+
+</body>
+</html>
