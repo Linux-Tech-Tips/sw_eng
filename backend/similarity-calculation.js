@@ -95,9 +95,11 @@ function calculate_similarity_score(query, page) {
 		}
 	}
     // afterwards, retrive all of the values from the query map and "normalise" them.
+    1
 	for ( term of query ) {
 		result += query_map.get(term) / query_length;
 	}
+    result = Math.min(1, result);
     // apply a correction function which to ensure that values below a certain threshold are skewed towards 0 and those above it are skewed towards 1.
 	return correction(result, threshold);
 }
