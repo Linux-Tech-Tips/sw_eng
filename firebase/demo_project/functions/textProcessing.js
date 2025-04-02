@@ -41,9 +41,9 @@ function htmlToText(input) {
 
 //function that takes a string and returns a string without punctuation, stopwords, whitespace, and all in lowercas
 function stripText(input) {
-  /*const RESERVED_CLAIMS = [
+  const RESERVED_CLAIMS = [
       "amr", "at_hash", "aud", "auth_time", "azp", "cnf", "c_hash", "exp", "iat",
-      "iss", "jti", "nbf", "nonce", "sub", "firebase", "asm"]; */
+      "iss", "jti", "nbf", "nonce", "sub", "firebase", "asm"];
   let text = input.toLowerCase();
 
   //remove punctuation
@@ -56,15 +56,15 @@ function stripText(input) {
 
   //remove stopwords
   let textArray = text.split(' ');
-  stopwordTextArray = sw.removeStopwords(textArray);i
+  stopwordTextArray = sw.removeStopwords(textArray);
   if(stopwordTextArray.join('')!=''){
     textArray = stopwordTextArray;
   }
-  /*for(i=0; i<textArray.length; ++i) {
+  for(i=0; i<textArray.length; ++i) {
     if(RESERVED_CLAIMS.includes(textArray[i])) {
       textArray = textArray.splice(i, 1);
     }
-  }*/
+  }
   text = textArray.join(' ');
 
   return text;
