@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>Add Page</title>
+	<script>
+	    async function addPage(pagesList) {
+		let formData = new FormData();
+		formData.append("urls", pagesList);
+		try {
+		    let response = await fetch("https://addpage-pl4q2xpkfq-uc.a.run.app/", {
+			method: "POST",
+			body: new URLSearchParams(formData),
+		    });
+		    return response;
+		} catch(error) {
+		    throw error;
+		}
+	    }
+
+	    async function processPageAdd() {
+		let pages = document.getElementById("urls").value;
+		let button = document.getElementById("submit");
+		let info = document.getElementById("info");
+		button.disabled = true;
+		info.innerHTML = "Adding pages...";
+		try {
+		    const response = await addPage(pages);
+		    console.log("gotten response");
+		    let responseText = await response.text();
+		    console.log(responseText);
+		    info.innerHTML = "Complete: " + responseText;
+		} catch(error) {
+		    info.innerHTML = "Error: " + error.message;
+		}
+		button.disabled = false;
+	    }
+	</script>
+    </head>
+
+    <body>
+	<p id="info"></p>
+	<form id="form">
+	    <label for="data">Data:</label>
+	    <textarea type="text" id="urls" name="urls"></textarea><br>
+	</form>
+	<button id="submit" onclick="processPageAdd();">submit</button>
+    </body>
+</html>
