@@ -20,8 +20,8 @@ function metadataProcess(pageData) {
     /* Incrementing counters with more weight based on page title */
     for(word of pageTitle) {
 	if(words[word]) {
-	    words[word] += 10;
-	    pageSize += 10;
+	    words[word] *= 2;
+	    pageSize += words[word] / 2;
 	} else {
 	    words[word] = 1;
 	}
