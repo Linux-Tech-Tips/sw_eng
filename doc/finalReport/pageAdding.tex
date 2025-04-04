@@ -3,5 +3,4 @@ On the user end, the urls of pages that a user wants to add are pasted into a te
 
 The function addPage receives an array of urls and the base url that is common amongst all pages. It then calls the crawler to fetch the html data from each page as a string. This is passed into the text processing functions which reduce the text to a usable form. \\
 Then the the function fetches the last page ID from the database. For each page to be added, it adds the basic page information (url, page title, base url, date added, ID). It then performs metadata processing and adds the page's metadata to the pageMetadata collection. \\
-To add the page to wordPages, it runs through each words frequency as determined by the metadata processing. If the frequency is above a certain threshold, the page's ID is added to that word's document in wordPages. \\
 It performs the meanings processing on the page and uploads this data to the pageVec collection and uploads the literal text data into the pageContent collection. Finally, it writes the pageID to the database as the last page ID used.
