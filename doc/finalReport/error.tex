@@ -1,2 +1,14 @@
 \section{Error Handling}
-to be done by LILIAN (provisionally, I presume most error handling will occur on the front end where input happens)\\ 
+There are two sections to the error handling in the front-end:
+\begin{itemize}
+  \item Search Query Error Handling
+  \item Add Page Error Handling
+\end{itemize}
+
+\textbf{Search Query Error Handling:}\\
+Error handling is within results.js, not search-loading.js. This is because the query is sent along with the user directly to the results page for their query to be sent to the backend. It is checked first that there is user input within the query. If the query is blank, the user will be redirected back to index.html.\\
+
+If a query is sent to the backend and an issue arises, an error message will be retrieved and displayed to the user, along with the specific error information.\\
+
+\textbf{Add Page Error Handling:}\\
+A success status variable was created within add-page.js to store the status of the process of adding pages to the search engine. If an error occurred; which is identified through the try catch statement, then the error string will be appended to success status; which will then  be presented to the user on the webpage.\\
