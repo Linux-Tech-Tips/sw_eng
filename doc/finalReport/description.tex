@@ -11,17 +11,17 @@ In order to process the raw page data into a form that can be used by the search
 \begin{enumerate}
   \item html tags, script blocks, and the header section are removed from the page, saving the title for further processing;
   \item all text is set to lower case, stop words and special characters are removed, which results in a plaintext string where words are separated by one space;
-  \item IDK DUDE META DATA PROCESSING
+  \item for the metadata functionality, the frequency of each word/term in the processed plaintext is counted and stored in the database;
   \item for the meaings search, each word in the page is replaced by its respective word embedding. These are vectors which represent the semantic meaning of words. 
 \end{enumerate}
 
 The search functionality itself is split up into three subsections:
 \begin{enumerate}
   \item a \textbf{meanings search} based on vectors representing a word's semantic meaning;
-  \item a \textbf{metadata search} based on the page's metadata;
+  \item a \textbf{metadata search} based on the page's metadata, notably considering term frequency;
   \item a \textbf{literal text search} based on word's spellings (this functions as a fuzzy search).
 \end{enumerate}
-which are then combined together to create a final similarity result between a page and a query, which is passed onto the front end. \\
+These are then combined together to create a final similarity result between a page and a query, which is passed onto the front end. \\
 
 The front end has the following functionalities:
 \begin{enumerate}
@@ -29,4 +29,4 @@ The front end has the following functionalities:
   \item users can add pages to the engine's database.
 \end{enumerate}
 
-These functionalities are very modular, which enabled the project work to be split up and worked on simultaneously.  
+Being split into well-defined components, the functionality is very modular, which simplified collaboration and enabled us to split up project work and develop the sections simultaneously.

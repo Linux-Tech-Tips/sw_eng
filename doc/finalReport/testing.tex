@@ -1,4 +1,18 @@
 \section{Testing}
-To be done by MARTIN\\
-how did we test it? many attempts with demo pages, mention addDemoPage here. 
-maybe put a bit abt optimisation here??
+
+Continuous testing was a fairly important part of the development process, to ensure all components work as expected.
+
+Due to time and scope constraints, there was no unified unit/integration/system testing procedure or framework.
+Most testing consisted of attempting to deploy a new piece of code to the Firebase backend and getting an error, clearly showing an issue with the submitted code.
+Using this approach, we managed to achieve a code base which works well enough to be practically usable for the purposes of the project.
+
+To validate ideas and assumptions about the project plan itself, as well as validating Firebase functionality, we used a number of Firebase Cloud Functions for purely testing purposes.
+For example, to verify our database design and utility functions, we implemented simple functions reading from and writing to the Firestore database.
+Later on, to check some of our assumptions and plans about the similarity score components, we implemented a function to add a demo page with dummy data to the database, so that the search function could be run.
+
+Towards the end of project development, most of testing moved to manual interactive frontend tests.
+Here, we were running the frontend pages with various combinations of inputs and outputs, measuring time taken, accuracy of results and making sure we limit any potential undesired behavior.
+For example, this helped us find an error when searching using a query entirely consisting of stop words (which would all get removed in preprocessing), which we solved by not allowing the query to become empty by not removing stop words if no other words are present.
+
+With the interactive frontend validation, we also made observations about the performance of the engine.
+While it very well could be improved, due to time constraints this falls out of the scope of this existing project, and so serves mostly as an interesting thing to potentially think about for the future.

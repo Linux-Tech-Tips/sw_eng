@@ -1,3 +1,6 @@
 \subsection{Metadata search}
-to be done by MARTIN\\
-metadata description, processing and search
+
+The metadata score is calculated simply based on the stored frequency data.
+For each page, the stored frequency data is fetched from the database.
+Then, for each word in the query, if a non-zero frequency value exists in the page, it is added to a cumulative counter.
+The counter is then divided by the length of the query, normalising it to a percentage value between 0 and 1.

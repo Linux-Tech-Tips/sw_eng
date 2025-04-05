@@ -1,3 +1,13 @@
 \subsection{Search Engine}
-to be done by MARTIN \\
-how does the final engine function work?? insert formula
+
+Whenever a search for a query is requested, the engine itself first initiates all three components, running them in parallel to calculate similarity scores against each preprocessed page.
+Once all three are complete, the engine goes through all existing pages in the database, reads their 3 individual scores and compiles them into a final similarity score.
+
+The compilation is done using the following formula:
+\[ SCORE = (R_c * M) + (1 - R_c) * ((C_f * W_m) + (1 - C_f) * (W_s)) \]
+
+Here, \(R_c\) is an arbitrary Metadata Relevance Constant, determined by trial and error, \(M\) is the Metadata Correlation Score, \(C_f\) is the meanings processor Confidence Value, \(W_m\) is the Word Meaning Correlation Score and \(W_s\) is the Word Spelling Correlation Score.
+
+This formula is used to obtain a number for each page.
+All the available pages are then compiled into an array of objects, including the page title, URL and similarity score, which is then also used to sort the array.
+The array is returned from the Firebase backend search function, and can be further processed by the frontend portion of the project.

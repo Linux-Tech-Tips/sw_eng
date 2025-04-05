@@ -4,8 +4,11 @@ Firestore has a maximum document size of 1 MiB. This is too small for larger pag
 \textbf{Fragmentation} \\
 Once the text has been transformed into a matrix by stringToMatrix, it is converted back into a string. 
 It is then split into pieces by every 1,048,287th character, which are written to the database. 
-To enable defragmentation, the pieces are titled ID\_FragmentNum and each contain a field nextID which link to the next fragment. 
+To enable defragmentation, any pieces after the first one are titled ID\_FragmentNum and each contains a field nextID which links to the next fragment.
 If there is no next fragment, nextID is set to -1. \\
 
 \textbf{Defragmentation}\\
-MARTIN PLS WRITE
+Defragmentation is done in the search engine component, after the data is fetched but before it is sent to the meanings score component.
+Due to how the engine works, when getting the score for each part, the entire database collection of the component is accessible in code.
+With this in mind, the defragmentation code simply checks nextID for each considered page, and, for any valid values found, gets the next document with the appropriate ID.
+The content of each document is appended until the last fragment is found.
