@@ -1,3 +1,6 @@
 \subsection{Literal Text Search}
-to be done by ETHAN\\
-literal text search description
+
+The actual similarity function aggregated the jaro similarity results from each term of the query against the page and divided them between the length of the query so that the values didn't fully exceed 1 (i.e, they remained usable). \\
+
+The content similarity score was then passed into a correction function in order to create a bias for the score so that values higher than around 0.6 would stay high while values below that point would be closer to zero.
+
