@@ -1,0 +1,6 @@
+\subsection{Ethan Aguocha-Njoroge}
+The most noticeable problem Ethan had was in relation to implementing the literal text search as originally he was going to use a cosine similarity for this calculation due to the prior requirement that the words were to be left as numerical vectors which would help increase the speed of the calculations when comparing them.
+
+However it quickly became apparent that wouldn’t work as creating the vector representation of words based off their spelling was difficult to do accurately and as a result, the cosine itself wouldnt be able to return appropriate values.
+After some discussion, Ethan left the words in their base form and utilised word distance function that calculated their difference and presented it as a decimal number in the range [0 - 1].
+The method chosen was the Jaro similarity function.

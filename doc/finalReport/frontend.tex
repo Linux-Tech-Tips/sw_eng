@@ -1,0 +1,8 @@
+\subsection{Front End}
+The front end consists of three HTML pages, one CSS file and four JavaScript files which all provide the functionality of the front-end.\\
+
+The main page displays a search bar for the user input. When a query is entered, the user is sent directly to the results page with the query as an argument. The query is retrieved from the URL and sent to the backend for processing while a loading overlay is displayed. Once a response has been retrieved from the back-end, HTML is dynamically generated for each result which is displayed on the page. After that, the loading screen is hidden and the user can select their desired result which will send them to the respective webpage.\\
+
+The front-end also provides the user with the interface to add pages to the search engine. The "+" and "-" buttons are responsible for the calling of the addLink() and removeLink() JavaScript functions which adds/removes a child to/from the group of link entry boxes; which is displayed on the webpage. The addPage() function iterates over the entries and appends each URL to a string that is separated by a comma. This is then sent to the backend, and the response is saved in a variable. This is then  presented to the user detailing the status of their submission. During the processing of the URL's, a loading screen is displayed and hidden before the success status is shown to the user.\\
+
+Front-end visuals contribute significantly to the user-experience and is a key characteristic of front-end development. Through wireframing and design planning, a coherent style was created which ensured a clean and consistent appearance. The background is configured through particles.js, which is derived from a library designed for creating an interactive background.\\

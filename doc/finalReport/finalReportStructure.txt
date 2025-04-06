@@ -1,0 +1,72 @@
+Compilation of final report structure based on the examples Enda uploaded :D
+
+Table of Contents
+  - with page numbers and subsections
+Introduction -> CEDAR
+  - what is the project?? --> search engine for technical documentation
+  - how did we get/decide on this idea for the project?
+  - why do we think it's cool?
+  - we wanted something novel
+  - most search engines are kinda shit for technical documentation (e.g. man pages)
+  - --> we do smth fun that's geared towards that
+  - link to our website
+Project Description/Aims -> CEDAR, MARTIN
+  - what is the TDS engine?
+  - what was it supposed to do?
+  - the TDS Engine (Technical Documents Search Engine) is specially made for technical documents
+  - it consists of 3 separate search functions added together: metadata, meanings, literal text
+  - let user make account and add pages
+  - let user control how much influence each section has (???)
+Project Planning -> MARTIN
+  - how did we go about planning it?
+  - high level requirements to give us structure (reference requirements doc here)
+  - planned structure lead to very modular project --> good for splitting up work
+  - agile --> work in sprints of variable length
+Resources used -> EVERYONE, CEDAR COMPILE
+  - e.g. Firestore, Stanford GloVe model, if we used any APIs, discord, node modules
+Teamwork & Communication -> ETHAN, MARTIN
+  - how did we talk to each other?
+  - github kanban, discord, regular standups
+  - work was pretty modular, we talked often and asked questions where necessary
+Role Distribution -> EVERYONE
+  - who did what, brief description
+  - Martin: project lead, scrum master, lead the meetings, set up github, guy we all asked questions, metadata search, database, engine
+  - Lilian: front end (insert longer description here)
+  - Ethan: literal text search, web crawler
+  - Cedar: text processing, meanings search
+Functionality Introduction -> EVERYONE
+  - what features does it have?
+  - metadata search, meanings search, literal text search, adding pages, text processing, web crawler, what control does the user have (i.e. can they change the weighting of different parts?), user account creation + authentication
+The Database Structure -> MARTIN
+  - how is the databased structured and how does this tie into the project structure?
+  - collections which have documents which have java objects
+  - insert database diagram
+  - words collection for vectors
+  - different collections for preprocessed page data for each section
+  - pageWords for indexing pages by word --> explain this whole thing
+Error Handling -> LILIAN (provisionally, I presume most error handling will occur on the front end where input happens
+  - how do we deal with errors? 
+Refactoring
+  - I'm gonna be so fr I do not understand what this means but one of the reports had a section on it
+Security -> LILIAN/MARTIN (if relevant to crawler, ETHAN)
+  - do we have any security in place?? what if user inputs evil things?
+Project Screenshots + Walkthrough -> CEDAR
+  - demonstrate the project running
+Testing Methods and Results -> MARTIN
+  - how did we test it?
+  - any automated tests? postman?
+  - maybe put a bit abt optimisation here??
+Difficulties Encountered -> EVERYONE
+  - what problems did we have?
+  - word embeddings require so such many storage and cpu
+  - crawler big difficult
+  - balancing the project with other stuff
+Future of the Project -> MARTIN, CEDAR
+  - are we going to try to continue working on it?
+  - if ye how? what would we add?
+Conclusion -> CEDAR
+  - what we would do differently if we did it again
+  - key takeaways, what did we learn
+Appendix
+  - gitHub Link
+  - link to GloVe stuffs

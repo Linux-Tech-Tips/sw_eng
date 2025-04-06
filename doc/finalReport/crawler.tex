@@ -1,0 +1,17 @@
+\subsection{Crawler}
+
+The crawler had two sections of it, the first was that it obtained the page data from a given url, and the second was that it got an amount of links from the base urls with a given maximum url limit.
+To crawl a given page, one would call the extractAllLinks function with the parameters being [the base url, the domain of the base url and the limit of links you wish to obtain]. 
+The limit would roughly be the maximum amount of links that could be extracted from the base url, as some pages have far too many urls in them and the validation method was too slow. \\
+
+So that the engine could get the page content of the retrived urls, they had to be passed in by a url validation method during the web crawl.
+
+The validation was to check for the following edge cases:
+\begin{itemize}
+    \item The url is within the same domain as the base url (i.e. they lie within the same website)
+    \item The url leads to functioning page. (so that the extracted page data is not null or empty.)
+    \item The url has not been visited before during the crawl, to prevent checking the same url twice.
+    \item The url is not part of the disallow rules in the robots.txt file of the website.
+\end{itemize}
+
+By the end of the crawl, the obtained list of valid urls was returned out of the function.
