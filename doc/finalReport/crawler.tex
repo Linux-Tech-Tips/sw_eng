@@ -1,8 +1,8 @@
 \subsection{Crawler}
 
 The crawler had two sections of it, the first was that it obtained the page data from a given url, and the second was that it got an amount of links from the base urls with a given maximum url limit.
-To crawl a given page, one would call the extractAllLinks function with the parameters being [the base url, the domain of the base url and the limit of links you wish to obtain], 
-the limit would roughly be the maximum amount of links that could be extracted from the base url as some pages have way too many urls in them and the validation method was too slow. \\
+To crawl a given page, one would call the extractAllLinks function with the parameters being [the base url, the domain of the base url and the limit of links you wish to obtain]. 
+The limit would roughly be the maximum amount of links that could be extracted from the base url, as some pages have far too many urls in them and the validation method was too slow. \\
 
 So that the engine could get the page content of the retrived urls, they had to be passed in by a url validation method during the web crawl.
 
