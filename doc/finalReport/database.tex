@@ -6,9 +6,9 @@ The database was hosted on Google Cloud Firestore, which provides a NoSQL JSON-c
 
 The database design itself was created iteratively in collaboration with the entire backend team, based on the requirements of each individual search component. For convenience, the design diagram was compiled into an image file, accessible to the team through the GitHub.
 
-Essentially, each backend component had its own collection, storing documents following a format described in the diagram. Each added page was given a unique ID number, which was used as the document name for the component collections. Theese collections were then unified by the 'pages' collection, storing metadata about each indexed page (including the page title, URL and ID). In addition, there was a collection with a document containing the last known page ID for when new pages were added, as well as a collection containing the vocabulary set used by the meanings component.
+Essentially, each backend component had its own collection, storing documents following a format described in the diagram. Each added page was given a unique ID number, which was used as the document name for the component collections. These collections were then unified by the 'pages' collection, storing metadata about each indexed page (including the page title, URL and ID). In addition, there was a collection with a document containing the last known page ID for when new pages were added, as well as a collection containing the vocabulary set used by the meanings component.
 
-For convenience and clarity, a database design diagram was created using the tool "draw.io". This diagram highlights each collection, the document structure for each, as well as expected data types of each element. It can be seen on figure \ref{fig:db_design}.
+The database design diagram was created using the tool "draw.io". It highlights each collection, the document structure for each, as well as expected data types of each element. It can be seen on figure \ref{fig:db_design}.
 
 For ease of use, within the backend, a set of wrapper functions was developed in a file called 'dbUtil.js'.
 
